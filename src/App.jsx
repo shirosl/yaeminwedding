@@ -116,14 +116,14 @@ const App = () => {
     return (
         <div className="min-h-screen bg-gray-50 font-sans p-6 sm:p-8">
             {/* Removed max-w-* limits and added w-full to make the card expand fully, while mx-auto ensures the overall content remains centered within the available space. */}
-            <div className="w-full mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
+            <div className="w-auto mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
                 <header className="bg-indigo-700 text-white p-8 text-center rounded-t-2xl">
-                    <p className="text-lg sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
-                    <h2 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h2>
-                    <h2 className="text-3xl sm:text-5xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h2>
-                    <p className="mt-4 text-lg font-medium">
+                    <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
+                    <h2 className="text-lg sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h2>
+                    <h2 className="text-lg sm:text-5xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h2>
+                    <p className="mt-4 text-base sm:text-lg font-medium">
                         Sunday, 22 March 2026 at 11 a.m.
                     </p>
                     <div className="mt-2 flex items-center justify-center">
