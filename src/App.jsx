@@ -7,28 +7,41 @@ import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee, Mail, Phone, Extern
         shiroPhone: "+60 12 500 1928",
         yaeminPhone: "+82 10 2994 1921",
         formLink: "https://docs.google.com/forms/d/e/1FAIpQLSflhZssuNGv0DCc3jYbffOaLimaaAQNu7vk2zIqtLXPSIzXHw/viewform?pli=1",
-        churchMapLink: "https://www.google.com/maps/place/True+Jesus+Church+(TJC)+Sungai+Siput/@4.821361,101.0792072,17z/data=!3m1!4b1!4m6!3m5!1s0x31b34c3116e10f19:0xd67a0a0397759b48!8m2!3d4.8213557!4d101.0817821!16s%2Fg%2Fg%2F11g6d8z_41?entry=ttu"
+        churchMapLink: "https://maps.app.goo.gl/icPmi6eHBhsJGGvz5"
     };
 
     const churches = [
         {
             name: "Sungai Siput Church",
             address: "34, Taman Bukit Medan, 31100 Sungai Siput (U) Perak",
-            mapLink: "https://www.google.com/maps/place/True+Jesus+Church+(TJC)+Sungai+Siput",
+            mapLink: "https://maps.app.goo.gl/icPmi6eHBhsJGGvz5",
             schedule: [
                 { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
                 { day: "Sat", time: "10:30am – 11:30am", service: "Sabbath Service" },
-                { day: "Sun", time: "10:00am – 11:00am", service: "REU Classes", highlight: true },
+                { day: "Sun", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]", },
+                { day: "Sun (22/3/2026)", time: "11:00am – 1:00pm", service: "Wedding", highlight: true },
             ]
         },
         {
             name: "Ipoh Church",
             address: "10, Jalan Voon Thian Soo, 30250 Ipoh",
-            mapLink: "https://www.google.com/maps/place/True+Jesus+Church+(TJC)+Ipoh",
+            mapLink: "https://maps.app.goo.gl/uEcn5bSTNJyakFSw9",
             schedule: [
                 { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
                 { day: "Sat", time: "10:30am – 11:30am", service: "Sabbath Service" },
                 { day: "Sun", time: "10:00am – 11:00am", service: "REU Classes" },
+            ]
+        },
+        {
+            name: "Bercham Church",
+            address: "No. 24, Persiaran Tasek Timur 5, Taman Medan Bercham, 31400 Ipoh, Perak Darul Ridzuan",
+            mapLink: "https://maps.app.goo.gl/XB2GZxMM9WSB8aoh7",
+            schedule: [
+                { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
+                { day: "Sat", time: "11:00am – 12:00pm", service: "Morning Sabbath Service" },
+                { time: "2:30pm – 3:30pm", service: "Afternoon Sabbath Service" },
+                { time: "4:00pm – 5:30pm", service: "REU Classes" },
+                { time: "6:30pm – 8:00pm", service: "Youth Service/ Choir Practice" },
             ]
         }
     ];
@@ -186,7 +199,8 @@ const App = () => {
                             titleEn="Travel Details (English)"
                             contentEn={
                                 <>
-                                    <p className="font-bold text-red-600 mb-2">Warning: March 21-22 is a major holiday, causing severe traffic congestion on the KL-Ipoh route.</p>
+                                    <p className="font-bold text-red-600 mb-2">Warning: March 21-22 is a major holiday, causing severe traffic congestion on the KL-Ipoh route. So if you are travelling by car or bus, travel time will take
+much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     <p className="font-bold mt-3">Travel Options:</p>
                                     <ul className="list-disc ml-6 space-y-2">
                                         <li><span className="font-semibold">By Car:</span> Approx 3 hours (will be much longer during the holiday).</li>
@@ -206,7 +220,8 @@ const App = () => {
                             titleKo="여행 안내 (한국어)"
                             contentKo={
                                 <>
-                                    <p className="font-bold text-red-600 mb-2">주의: 3월 21-22일은 주요 공휴일로, KL-이포 노선에 심각한 교통 체증이 예상됩니다.</p>
+                                    <p className="font-bold text-red-600 mb-2">주의: 3월 21-22일은 주요 공휴일로, KL-이포 노선에 심각한 교통 체증이 예상됩니다. 
+                                      따라서 자동차나 버스로 이동하시는 경우 평소보다 이동 시간이 훨씬 길어지고 쿠알라룸푸르-이포 노선이 매우 혼잡할 수 있습니다. </p>
                                     <p className="font-bold mt-3">이동 방법:</p>
                                     <ul className="list-disc ml-6 space-y-2">
                                         <li><span className="font-semibold">자가용:</span> 약 3 시간 소요 (공휴일 기간에는 훨씬 길어집니다).</li>
@@ -349,23 +364,23 @@ const App = () => {
                         </div>
                         
                         <p className="text-gray-700 mb-6">
-                          For any questions regarding travel or local arrangements, please do not hesitate to reach out.
+                          For any questions regarding travel or local arrangements, please do not hesitate to reach out.<br/>
                           여행 또는 현지 관련 문의가 있으시면 편하게 연락 주세요.
                         </p>
 
                         <div className="grid md:grid-cols-2 gap-4 text-sm">
-                            <div className="flex items-center p-3 bg-blue-50 rounded-lg shadow-sm">
+                            <div className="flex items-center p-3 bg-blue-50 text-blue-600 rounded-lg shadow-sm">
                                 <Mail className="w-5 h-5 text-blue-600 mr-3" />
-                                <span>Email: <a href={`mailto:${contact.email}`} className="text-blue-600 font-medium hover:underline">{contact.email}</a></span>
+                                <span >Email: <a href={`mailto:${contact.email}`} className="text-blue-600 font-medium hover:underline">{contact.email}</a></span>
                             </div>
                             <div className="flex flex-col space-y-2">
                                 <div className="flex items-center p-3 bg-green-50 rounded-lg shadow-sm">
                                     <Phone className="w-5 h-5 text-green-600 mr-3" />
-                                    <span>Shiro: <a href={`tel:${contact.shiroPhone.replace(/\s/g, '')}`} className="text-green-600 font-medium hover:underline">{contact.shiroPhone}</a></span>
+                                    <span className="text-green-600">Shiro: <a href={`tel:${contact.shiroPhone.replace(/\s/g, '')}`} className="text-green-600 font-medium hover:underline">{contact.shiroPhone}</a></span>
                                 </div>
                                 <div className="flex items-center p-3 bg-green-50 rounded-lg shadow-sm">
                                     <Phone className="w-5 h-5 text-green-600 mr-3" />
-                                    <span>조예민 (Yae Min): <a href={`tel:${contact.yaeminPhone.replace(/\s/g, '')}`} className="text-green-600 font-medium hover:underline">{contact.yaeminPhone}</a></span>
+                                    <span className="text-green-600">조예민 (Yae Min): <a href={`tel:${contact.yaeminPhone.replace(/\s/g, '')}`} className="text-green-600 font-medium hover:underline">{contact.yaeminPhone}</a></span>
                                 </div>
                             </div>
                         </div>
