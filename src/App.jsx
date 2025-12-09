@@ -60,13 +60,13 @@ import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee, Mail, Phone, Extern
     // Helper component for dual language boxes
     const DualLanguageBox = ({ titleEn, contentEn, titleKo, contentKo }) => (
         <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mt-4">
-            <div className="p-4 bg-gray-50 rounded-xl shadow-inner">
+            <div className="p-6 bg-gray-50 rounded-xl shadow-inner">
                 <h3 className="text-base sm:text-lg font-bold text-gray-700 border-b pb-1 mb-3">{titleEn}</h3>
                 <div className="text-gray-700 text-sm leading-relaxed">
                     {contentEn}
                 </div>
             </div>
-            <div className="p-4 bg-gray-50 rounded-xl shadow-inner">
+            <div className="p-6 bg-gray-50 rounded-xl shadow-inner">
                 <h3 className="text-base sm:text-lg font-bold text-gray-700 border-b pb-1 mb-3">{titleKo}</h3>
                 <div className="text-gray-700 text-sm leading-relaxed">
                     {contentKo}
@@ -76,7 +76,7 @@ import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee, Mail, Phone, Extern
     );
 
     const ChurchScheduleTable = ({ church }) => (
-        <div className={`p-4 rounded-xl shadow-lg border-2 ${church.name.includes('Sungai Siput') ? 'bg-indigo-50 border-indigo-300' : 'bg-white border-gray-200'}`}>
+        <div className={`p-6 rounded-xl shadow-lg border-2 ${church.name.includes('Sungai Siput') ? 'bg-indigo-50 border-indigo-300' : 'bg-white border-gray-200'}`}>
             <h4 className="text-lg sm:text-xl font-bold mb-2 flex items-center gap-2 text-gray-800">
                 <MapPin className="w-5 h-5 text-indigo-500" />
                 {church.name}
@@ -114,7 +114,7 @@ const App = () => {
     
 
     return (
-        <div className="min-h-screen bg-gray-50 font-sans p-4 sm:p-8">
+        <div className="min-h-screen bg-gray-50 font-sans p-6 sm:p-8">
             {/* Removed max-w-* limits and added w-full to make the card expand fully, while mx-auto ensures the overall content remains centered within the available space. */}
             <div className="w-full mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
                 
@@ -325,7 +325,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                         
                         <div className="grid md:grid-cols-2 gap-8 mt-4">
                             {/* English Column */}
-                            <div className="p-4 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
+                            <div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
                                 <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">Action Required (English)</h3>
                                 <p className="text-gray-700 text-sm leading-relaxed">
                                     Once everything is booked, please fill out this Google Form so that we can be informed about your arrival and departure.
@@ -340,7 +340,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                             </div>
                             
                             {/* Korean Column */}
-                            <div className="p-4 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
+                            <div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
                                 <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">요청 사항 (한국어)</h3>
                                 <p className="text-gray-700 text-sm leading-relaxed">
                                     모든 예약을 완료하시면 이 구글 폼을 작성해 주시면 감사드리겠습니다!
@@ -368,7 +368,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                           여행 또는 현지 관련 문의가 있으시면 편하게 연락 주세요.
                         </p>
 
-                        <div className="grid md:grid-cols-2 gap-4 text-sm">
+                        <div className="grid md:grid-cols-2 gap-6 text-sm">
                             <div className="flex items-center p-3 bg-blue-50 text-blue-600 rounded-lg shadow-sm">
                                 <Mail className="w-5 h-5 text-blue-600 mr-3" />
                                 <span >Email: <a href={`mailto:${contact.email}`} className="text-blue-600 font-medium hover:underline">{contact.email}</a></span>
