@@ -1,9 +1,7 @@
 import React from 'react';
 import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee, Mail, Phone, ExternalLink, CheckCircle } from 'lucide-react';
 
-// Main App component which is the default export
-const App = () => {
-    // --- Data Definition ---
+// --- Data Definition ---
     const contact = {
         email: "shiroandyaemin@gmail.com",
         shiroPhone: "+60 12 500 1928",
@@ -98,6 +96,9 @@ const App = () => {
         </div>
     );
 
+// Main App component which is the default export
+const App = () => {
+    
 
     return (
         <div className="min-h-screen bg-gray-50 font-sans p-4 sm:p-8">
@@ -194,7 +195,7 @@ const App = () => {
                                     </ul>
                                     <p className="font-bold mt-4 text-green-700">Recommended Options:</p>
                                     <ul className="list-decimal ml-6 space-y-2">
-                                        <li><span className="font-semibold">Use ETS Train:</span> Fastest way to avoid traffic. <a href="https://online.ktmb.com.my/" target="_blank" className="text-blue-600 hover:underline">ETS Booking</a></li>
+                                        <li><span className="font-semibold">Use ETS Train:</span> Fastest way to avoid traffic. There is also a train from KL Sentral to Sungai Siput which takes about 2 hours 50 minutes. <a href="https://online.ktmb.com.my/" target="_blank" className="text-blue-600 hover:underline">ETS Booking</a></li>
                                         <li><span className="font-semibold">Direct Airport Bus to Ipoh:</span> Reserved bus from KLIA/KLIA2 every 1-2 hours. <a href="https://www.yoyo.my/" target="_blank" className="text-blue-600 hover:underline">Yoyo Bus Booking</a></li>
                                         <li><span className="font-semibold">Arrive Earlier:</span> Travel to Ipoh on March 18th or 19th to avoid traffic.</li>
                                         <li><span className="font-semibold">Fly Closer:</span> Fly to Singapore, then connect to Ipoh Airport (IPH). <a href="https://booking.flyscoot.com/" target="_blank" className="text-blue-600 hover:underline">Scoot Booking</a></li>
@@ -214,7 +215,7 @@ const App = () => {
                                     </ul>
                                     <p className="font-bold mt-4 text-green-700">권장 옵션:</p>
                                     <ul className="list-decimal ml-6 space-y-2">
-                                        <li><span className="font-semibold">ETS(전기 열차) 이용:</span> 교통 체증을 피하는 가장 빠른 방법. <a href="https://online.ktmb.com.my/" target="_blank" className="text-blue-600 hover:underline">ETS 기차표 예약</a></li>
+                                        <li><span className="font-semibold">ETS(전기 열차) 이용:</span> 교통 체증을 피하는 가장 빠른 방법. KL Sentral에서 Sungai Siput까지 약 2시간 50분 소요되는 기차도 있습니다. <a href="https://online.ktmb.com.my/" target="_blank" className="text-blue-600 hover:underline">ETS 기차표 예약</a></li>
                                         <li><span className="font-semibold">쿠알라룸푸르 공항 직행버스:</span> 1~2 시간 간격 운행, 사전 예약 가능. <a href="https://www.yoyo.my/" target="_blank" className="text-blue-600 hover:underline">버스 예약</a></li>
                                         <li><span className="font-semibold">이포에 일찍 도착하기:</span> 3월 18일이나 19일에 출발하면 교통 상황이 좋습니다.</li>
                                         <li><span className="font-semibold">이포 공항으로 비행:</span> 싱가포르 경유 후 이포 공항(IPH)으로 환승. <a href="https://booking.flyscoot.com/" target="_blank" className="text-blue-600 hover:underline">비행기 예약</a></li>
@@ -231,25 +232,33 @@ const App = () => {
                             titleEn="Travel Details (English)"
                             contentEn={
                                 <>
-                                    <p>We recommend staying in or near <strong>Ipoh</strong>. It offers comfortable hotels and convenient access to the wedding venue.</p>
+                                <p>Please book your own hotel in Sungai Siput or Ipoh (near Ipoh bus terminal or Ipoh train station) as soon as possible because reservations are filling up fast. </p>
+                                    
+                                {/**
+                                 
+                                <p>We recommend staying in or near <strong>Ipoh</strong>. It offers comfortable hotels and convenient access to the wedding venue.</p>
                                     <p className="font-bold mt-4">Suggested Hotels:</p>
                                     <ul className="list-disc ml-6 space-y-2">
                                         <li><span className="font-semibold">MH Hotel Ipoh:</span> Closest to Sungai Siput. <span className="text-indigo-500 font-bold">Highly recommended.</span> <a href="https://www.agoda.com/mh-hotels-ipoh/hotel/ipoh-my.html" target="_blank" className="text-blue-600 hover:underline">Check Prices</a></li>
                                         <li><span className="font-semibold">Weil Hotel, Ipoh:</span> Modern hotel in the city centre.</li>
                                         <li><span className="font-semibold">M Boutique Hotel, Ipoh:</span> Stylish boutique option with local character.</li>
                                     </ul>
+                                 */
+                                  
+                                }    
                                 </>
                             }
                             titleKo="여행 안내 (한국어)"
                             contentKo={
                                 <>
-                                    <p>결혼식장과 가까운 <strong>이포 (Ipoh)</strong> 지역 숙박을 추천드립니다. 다양한 호텔이 있으며 접근성이 좋습니다.</p>
+                                <p>숭가이 시풋 또는 이포(이포 버스 터미널 또는 이포 기차역 근처)에 있는 호텔은 예약이 빠르게 마감되고 있으니 가능한 한 빨리 예약해 주세요.  </p>
+                                    {/**<p>결혼식장과 가까운 <strong>이포 (Ipoh)</strong> 지역 숙박을 추천드립니다. 다양한 호텔이 있으며 접근성이 좋습니다.</p>
                                     <p className="font-bold mt-4">추천 호텔:</p>
                                     <ul className="list-disc ml-6 space-y-2">
                                         <li><span className="font-semibold">MH Hotel Ipoh:</span> 숭가이 시풋에서 가장 가까움. <span className="text-indigo-500 font-bold">적극 추천합니다.</span> <a href="https://www.agoda.com/mh-hotels-ipoh/hotel/ipoh-my.html" target="_blank" className="text-blue-600 hover:underline">가격 확인</a></li>
                                         <li><span className="font-semibold">Weil Hotel Ipoh:</span> 이포 시내 중심, 모던하고 편리한 호텔</li>
                                         <li><span className="font-semibold">M Boutique Hotel Ipoh:</span> 세련된 디자인과 지역 감성이 어우러진 부티크 호텔</li>
-                                    </ul>
+                                    </ul>*/}
                                 </>
                             }
                         />
