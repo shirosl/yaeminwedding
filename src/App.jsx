@@ -121,8 +121,8 @@ const App = () => {
                 {/* Header Section */}
                 <header className="bg-indigo-700 text-white p-8 text-center rounded-t-2xl">
                     <p className="text-lg sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
-                    <h1 className="text-4xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
-                    <h1 className="text-xl sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
+                    <h2 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h2>
+                    <h2 className="text-3xl sm:text-5xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h2>
                     <p className="mt-4 text-lg font-medium">
                         Sunday, 22 March 2026 at 11 a.m.
                     </p>
