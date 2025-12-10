@@ -1,7 +1,8 @@
 import React from 'react';
-import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee, Mail, Phone, ExternalLink, CheckCircle } from 'lucide-react';
-
+import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle } from 'lucide-react';
+import bannerimg from "/public/wedding.png";
 // --- Data Definition ---
+const BANNER_PATH = bannerimg; 
     const contact = {
         email: "shiroandyaemin@gmail.com",
         shiroPhone: "+60 12 500 1928",
@@ -108,31 +109,68 @@ import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee, Mail, Phone, Extern
             </div>
         </div>
     );
-
+     const ImageErrorContent = () => (
+        <div className="p-4 bg-red-800 bg-opacity-70 rounded-lg">
+            <AlertTriangle className="w-8 h-8 text-yellow-300 mx-auto mb-2" />
+            <p className="text-lg font-bold text-yellow-300">Cannot Load Image (404 Error)</p>
+            <p className="text-sm font-medium text-white mt-1">
+                Browser looked for: <code className="bg-red-700 p-1 rounded font-mono">{BANNER_PATH}</code>
+            </p>
+            <p className="text-xs text-white italic mt-1">
+                Please ensure the file is in the root of your public folder with the exact name and extension.
+            </p>
+        </div>
+    );
+const BannerContent = () => (
+        <>
+            <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
+            <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
+            <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
+            <p className="mt-4 text-base sm:text-lg font-medium">
+                Sunday, 22 March 2026 at 11 a.m.
+            </p>
+            <div className="mt-2 flex items-center justify-center">
+                <MapPin className="w-5 h-5 mr-2" />
+                <a href={contact.churchMapLink} target="_blank" rel="noopener noreferrer" 
+                   className="hover:underline text-indigo-200 text-sm sm:text-base">
+                  True Jesus Church, Sungai Siput (真耶穌教會 和丰教会), Perak, Malaysia
+                </a>
+            </div>
+        </>
+    );
 // Main App component which is the default export
 const App = () => {
     
-
     return (
         <div className="min-h-screen bg-gray-50 font-sans p-6 sm:p-8">
             {/* Removed max-w-* limits and added w-full to make the card expand fully, while mx-auto ensures the overall content remains centered within the available space. */}
             <div className="w-auto mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
-                <header className="bg-indigo-700 text-white p-8 text-center rounded-t-2xl">
-                    <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
-                    <h2 className="text-lg sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h2>
-                    <h2 className="text-lg sm:text-5xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h2>
+                <header  className="relative text-white p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
+                    style={{
+                        minHeight: '350px', // Ensures minimum height even if background image is missing/failing
+                        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0,1), rgba(1,0,0,0,3)), url('${BANNER_PATH}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundColor: '#581c87', // Fallback color
+                    }}
+                >
+                     <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
+                    <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
+                    <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
                     <p className="mt-4 text-base sm:text-lg font-medium">
                         Sunday, 22 March 2026 at 11 a.m.
                     </p>
                     <div className="mt-2 flex items-center justify-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         <a href={contact.churchMapLink} target="_blank" rel="noopener noreferrer" 
-                           className="hover:underline text-indigo-200 text-sm sm:text-base">
-                          True Jesus Church, Sungai Siput (真耶穌教會 和丰教会), Perak, Malaysia
+                        className="hover:underline text-indigo-200 text-sm sm:text-base">
+                        True Jesus Church, Sungai Siput (真耶穌教會 和丰教会), Perak, Malaysia
                         </a>
                     </div>
+
+
                 </header>
 
                 <main className="p-6 sm:p-10">
