@@ -1,7 +1,7 @@
 import React from 'react';
 import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle } from 'lucide-react';
-import bannerimg from "/public/wedding.png";
-// --- Data Definition ---
+import bannerimg from "../dist/wedding.png";
+// --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
     const contact = {
         email: "shiroandyaemin@gmail.com",
@@ -150,12 +150,14 @@ const App = () => {
                 <header  className="relative text-white p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
                     style={{
                         minHeight: '350px', // Ensures minimum height even if background image is missing/failing
-                        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0,1), rgba(1,0,0,0,3)), url('${BANNER_PATH}')`,
+                        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0,1), rgba(1,0,0,0,3)), url('${bannerimg}')`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        backgroundColor: '#581c87', // Fallback color
+                        //backgroundColor: '#581c87', // Fallback color
                     }}
                 >
+                  <img src={bannerimg} width="100" height="50" />
+                {/*    <img src={require('assets/EL2.jpg')} /> */}
                      <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
                     <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
                     <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
