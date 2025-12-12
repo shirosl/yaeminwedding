@@ -146,16 +146,16 @@ const App = () => {
     
     return (
          <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
-            <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-white shadow-2xl rounded-2xl overflow-hidden">
+            <div className="w-full max-w-7xl mx-1/2 sm:mx-10 bg-yellow-30 shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
-                <header  className="relative text-indigo-500 p-4 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
+                <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
                     style={{
-                        minHeight: '250px', // Ensures minimum height even if background image is missing/failing
-                        backgroundImage: `linear-gradient(to bottom, rgba(167, 234, 243, 0.2), rgba(252, 251, 251, 0.3)), url(${bannerimg})`,
+                        minHeight: '400px', // Ensures minimum height even if background image is missing/failing
+                        backgroundImage: `linear-gradient(to bottom, rgba(245, 247, 198, 0.2), rgba(237, 235, 224, 0.3)), url(${bannerimg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        //backgroundColor: '#581c87', // Fallback color
+                        backgroundColor: '#581c87', // Fallback color
                     }}
                 >
                      <p className="text-base md:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
