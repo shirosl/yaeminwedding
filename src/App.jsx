@@ -146,7 +146,7 @@ const App = () => {
     
     return (
          <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
-            <div className="w-full max-w-7xl mx-4 sm:mx-8 bg-white shadow-2xl rounded-2xl overflow-hidden">
+            <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-white shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
                 <header  className="relative text-indigo-500 p-4 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
@@ -158,10 +158,10 @@ const App = () => {
                         //backgroundColor: '#581c87', // Fallback color
                     }}
                 >
-                     <p className="text-xl md:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
+                     <p className="text-base md:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
                     <h1 className="text-3xl md:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
                     <h1 className="text-lg md:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
-                    <p className="mt-4 text-base md:text-lg font-medium">
+                    <p className="mt-4 text-base sm:text-lg font-medium">
                         Sunday, 22 March 2026 at 11 a.m.
                     </p>
                     <div className="mt-2 flex items-center justify-center">
