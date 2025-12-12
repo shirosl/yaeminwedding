@@ -146,7 +146,7 @@ const App = () => {
     
     return (
          <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
-            <div className="w-full max-w-7xl mx-1/2 sm:mx-10 bg-yellow-30 shadow-2xl rounded-2xl overflow-hidden">
+            <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-yellow-50 shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
                 <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
@@ -175,7 +175,7 @@ const App = () => {
 
                 </header>
 
-                <main className="p-4 sm:p-8">
+                <main className="p-3 sm:p-8">
                     
                     {/* Welcome Section */}
                     <Section icon={CheckCircle} title="Welcome to Malaysia" iconColor="text-green-600">
