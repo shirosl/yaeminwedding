@@ -13,7 +13,7 @@ const BANNER_PATH = bannerimg;
 
     const churches = [
         {
-            name: "Sungai Siput Church",
+            name: "Sungai Siput Church [Wedding Venue]",
             address: "34, Taman Bukit Medan, 31100 Sungai Siput (U) Perak",
             mapLink: "https://maps.app.goo.gl/icPmi6eHBhsJGGvz5",
             schedule: [
@@ -29,8 +29,11 @@ const BANNER_PATH = bannerimg;
             mapLink: "https://maps.app.goo.gl/uEcn5bSTNJyakFSw9",
             schedule: [
                 { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat", time: "10:30am – 11:30am", service: "Sabbath Service" },
-                { day: "Sun", time: "10:00am – 11:00am", service: "REU Classes" },
+                { day: "Sat", time: "10:45am – 12:00pm", service: "Sabbath Service" },
+                {  time: "11:10am – 12:10pm", service: "REU Classes (Elementary)" },
+                {  time: "1:00pm – 2:00pm", service: "REU Classes (Junior)" },
+                {  time: "3:00pm – 4:00pm", service: "Afternoon Sabbath Service" },
+                { day: "Sun", time: "9:00am – 10:00am", service: "Morning Prayer" },
             ]
         },
         {
@@ -147,18 +150,18 @@ const App = () => {
             <div className="w-auto mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
-                <header  className="relative text-white p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
+                <header  className="relative text-indigo-500 p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
                     style={{
-                        minHeight: '350px', // Ensures minimum height even if background image is missing/failing
-                        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0,1), rgba(1,0,0,0,3)), url('${bannerimg}')`,
+                        minHeight: '250px', // Ensures minimum height even if background image is missing/failing
+                        backgroundImage: `linear-gradient(to bottom, rgba(167, 234, 243, 0.2), rgba(252, 251, 251, 0.3)), url(${bannerimg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         //backgroundColor: '#581c87', // Fallback color
                     }}
                 >
-                  <img src={bannerimg} width="100" height="50" />
+                {/*  <img src={bannerimg} width="100" height="50" />*/}
                 {/*    <img src={require('assets/EL2.jpg')} /> */}
-                     <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
+                     <p className="text-base sm:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
                     <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
                     <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
                     <p className="mt-4 text-base sm:text-lg font-medium">
