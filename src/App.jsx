@@ -158,10 +158,10 @@ const App = () => {
                         //backgroundColor: '#581c87', // Fallback color
                     }}
                 >
-                     <p className="text-base sm:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
-                    <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
-                    <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
-                    <p className="mt-4 text-base sm:text-lg font-medium">
+                     <p className="text-xl md:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
+                    <h1 className="text-3xl md:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
+                    <h1 className="text-lg md:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
+                    <p className="mt-4 text-base md:text-lg font-medium">
                         Sunday, 22 March 2026 at 11 a.m.
                     </p>
                     <div className="mt-2 flex items-center justify-center">
