@@ -159,8 +159,6 @@ const App = () => {
                         //backgroundColor: '#581c87', // Fallback color
                     }}
                 >
-                {/*  <img src={bannerimg} width="100" height="50" />*/}
-                {/*    <img src={require('assets/EL2.jpg')} /> */}
                      <p className="text-base sm:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
                     <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
                     <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
@@ -183,9 +181,9 @@ const App = () => {
                     {/* Welcome Section */}
                     <Section icon={CheckCircle} title="Welcome to Malaysia" iconColor="text-green-600">
                         <DualLanguageBox
-                            titleEn="Travel Details (English)"
+                            titleEn="English"
                             contentEn={<p>We are deeply grateful that you are travelling from afar to celebrate this joyful occasion with us. To assist in your travel planning, we have prepared the following information and recommendations.</p>}
-                            titleKo="여행 안내 (한국어)"
+                            titleKo="한국어"
                             contentKo={<p>먼 길을 오셔서 저희의 소중한 날을 함께 축하해 주심에 진심으로 감사드립니다. 하객 여러분의 여행 준비에 도움이 될 수 있도록 아래와 같이 안내드립니다.</p>}
                         />
                     </Section>
@@ -193,7 +191,7 @@ const App = () => {
                     {/* Airport Section */}
                     <Section icon={Plane} title="Getting to Malaysia (Airport Information)" iconColor="text-indigo-600">
                         <DualLanguageBox
-                            titleEn="Travel Details (English)"
+                            titleEn="English"
                             contentEn={
                                 <>
                                     <p className="font-bold text-gray-700">Nearest International Airport:</p>
@@ -202,7 +200,7 @@ const App = () => {
                                     <p>Sultan Azlan Shah Airport in Ipoh (IPH) – about 1 hour by car to True Jesus Church Sungai Siput.</p>
                                 </>
                             }
-                            titleKo="여행 안내 (한국어)"
+                            titleKo="한국어"
                             contentKo={
                                 <>
                                     <p className="font-bold text-gray-700">가장 가까운 국제공항:</p>
@@ -217,7 +215,7 @@ const App = () => {
                     {/* Visa Section */}
                     <Section icon={BookUser} title="Visa Information and Entry Requirements" iconColor="text-yellow-600">
                         <DualLanguageBox
-                            titleEn="Travel Details (English)"
+                            titleEn="English"
                             contentEn={
                                 <ul className="list-disc ml-6 space-y-2">
                                   <li>Most guests (Korea, New Zealand, etc.) may enter Malaysia visa-free for short stays. Please confirm the latest regulations prior to departure.</li>
@@ -225,7 +223,7 @@ const App = () => {
                                   <li>Foreign nationals must complete the <span className="font-bold">Malaysia Digital Arrival Card (MDAC)</span> prior to arrival (within 3 days before arrival): <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank" className="text-blue-600 hover:underline">MDAC Registration <ExternalLink size={13} className="inline mb-0.5" /></a>.</li>
                                 </ul>
                             }
-                            titleKo="여행 안내 (한국어)"
+                            titleKo="한국어"
                             contentKo={
                                 <ul className="list-disc ml-6 space-y-2">
                                   <li>대한민국, 뉴질랜드 등 대부분의 국가는 단기 체류 시 무비자 입국이 가능합니다. 최신 입국 규정을 한 번 더 확인하시기 바랍니다.</li>
@@ -239,7 +237,7 @@ const App = () => {
                     {/* Congestion Section */}
                     <Section icon={TrainFront} title="Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" iconColor="text-red-600">
                         <DualLanguageBox
-                            titleEn="Travel Details (English)"
+                            titleEn="English"
                             contentEn={
                                 <>
                                     <p className="font-bold text-red-600 mb-2">Warning: March 21-22 is a major holiday, causing severe traffic congestion on the KL-Ipoh route. So if you are travelling by car or bus, travel time will take
@@ -260,7 +258,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     <p className="mt-4">In Ipoh, taxis and Grab are easy to find.</p>
                                 </>
                             }
-                            titleKo="여행 안내 (한국어)"
+                            titleKo="한국어"
                             contentKo={
                                 <>
                                     <p className="font-bold text-red-600 mb-2">주의: 3월 21-22일은 주요 공휴일로, KL-이포 노선에 심각한 교통 체증이 예상됩니다. 
@@ -287,7 +285,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     {/* Accommodation Section */}
                     <Section icon={Hotel} title="Accommodation" iconColor="text-teal-600">
                         <DualLanguageBox
-                            titleEn="Travel Details (English)"
+                            titleEn="English"
                             contentEn={
                                 <>
                                 <p>Please book your own hotel in Sungai Siput or Ipoh (near Ipoh bus terminal or Ipoh train station) as soon as possible because reservations are filling up fast. </p>
@@ -306,7 +304,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                 }    
                                 </>
                             }
-                            titleKo="여행 안내 (한국어)"
+                            titleKo="한국어"
                             contentKo={
                                 <>
                                 <p>숭가이 시풋 또는 이포(이포 버스 터미널 또는 이포 기차역 근처)에 있는 호텔은 예약이 빠르게 마감되고 있으니 가능한 한 빨리 예약해 주세요.  </p>
@@ -325,7 +323,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     {/* Experience Section */}
                     <Section icon={Coffee} title="Things to Experience in Ipoh" iconColor="text-amber-600">
                         <DualLanguageBox
-                            titleEn="Travel Details (English)"
+                            titleEn="English"
                             contentEn={
                                 <ul className="list-disc ml-6 space-y-2">
                                     <li>Explore <strong>Ipoh Old Town</strong> (heritage buildings, famous white coffee).</li>
@@ -333,7 +331,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     <li>Savour local specialties: <strong>Ipoh Hor Fun, Bean Sprout Chicken, and Salted Chicken</strong>.</li>
                                 </ul>
                             }
-                            titleKo="여행 안내 (한국어)"
+                            titleKo="한국어"
                             contentKo={
                                 <ul className="list-disc ml-6 space-y-2">
                                     <li><strong>이포 올드타운 산책</strong> (유서 깊은 건물, 유명 화이트 커피 카페 탐방)</li>
