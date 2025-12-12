@@ -150,7 +150,7 @@ const App = () => {
             <div className="w-auto mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden">
                 
                 {/* Header Section */}
-                <header  className="relative text-indigo-500 p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
+                <header  className="relative text-indigo-500 p-4 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
                     style={{
                         minHeight: '250px', // Ensures minimum height even if background image is missing/failing
                         backgroundImage: `linear-gradient(to bottom, rgba(167, 234, 243, 0.2), rgba(252, 251, 251, 0.3)), url(${bannerimg})`,
@@ -160,8 +160,8 @@ const App = () => {
                     }}
                 >
                      <p className="text-base sm:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
-                    <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
-                    <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
+                    <h1 className="text-2xl sm:text-xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
+                    <h1 className="text-base sm:text-base font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
                     <p className="mt-4 text-base sm:text-lg font-medium">
                         Sunday, 22 March 2026 at 11 a.m.
                     </p>
@@ -176,7 +176,7 @@ const App = () => {
 
                 </header>
 
-                <main className="p-6 sm:p-10">
+                <main className="p-4 sm:p-8">
                     
                     {/* Welcome Section */}
                     <Section icon={CheckCircle} title="Welcome to Malaysia" iconColor="text-green-600">
