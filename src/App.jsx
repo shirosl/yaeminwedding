@@ -4,6 +4,48 @@ import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
 
+const SECTIONS = [
+    { id: 'welcome', enTitle: "Welcome", koTitle: "환영" },
+    { id: 'airport', enTitle: "Airport & Visa", koTitle: "공항 및 비자" },
+    { id: 'travel', enTitle: "Local Travel", koTitle: "현지 이동" },
+    { id: 'accommodation', enTitle: "Accommodation", koTitle: "숙소" },
+    { id: 'experience', enTitle: "Experience Ipoh", koTitle: "이포 체험" },
+    { id: 'schedule', enTitle: "Church Schedule", koTitle: "예배 시간" },
+];
+
+const NavigationTabs = ({ language }) => {
+     return (
+        // Wrapper for the entire sticky navigation bar
+        <div className="sticky-nav-container sticky top-0 z-10 w-full bg-white shadow-xl border-b border-gray-100 -mx-8 px-8">
+            <div className="flex items-center justify-start py-3 max-w-7xl mx-auto">
+                
+                {/* Tabs Container - Allows horizontal scrolling on small screens */}
+                <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-2 pr-4 scrollbar-hide"> 
+                    {SECTIONS.map((section) => (
+                        <a // Changed from button to <a> for native anchor linking
+                            key={section.id}
+                            href={`#${section.id}`} // Target the section ID
+                            className="flex-shrink-0 px-3 py-1 text-xs font-semibold rounded-full 
+                                       bg-indigo-50 text-indigo-700 hover:bg-indigo-100 transition-colors duration-200 
+                                       shadow-sm hover:shadow-md active:scale-[.98] hover:no-underline"
+                        >
+                            {language === 'en' ? section.enTitle : section.koTitle}
+                        </a>
+                    ))}
+                    <a
+                        href="#rsvp"
+                        className="flex-shrink-0 px-3 py-1 text-xs font-semibold rounded-full 
+                                   bg-pink-100 text-pink-700 hover:bg-pink-200 transition-colors duration-200 
+                                   shadow-sm hover:shadow-md active:scale-[.98] hover:no-underline"
+                    >
+                        RSVP
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    );
+};
 const LanguageSwitcher = ({ language, setLanguage }) => (
     <div className="flex justify-center space-x-4 mb-8">
         <button
@@ -28,7 +70,61 @@ const LanguageSwitcher = ({ language, setLanguage }) => (
         </button>
     </div>
 );
+const BackToTopAndRsvpButton = ({ language, formLink }) => {
+    const [isVisible, setIsVisible] = React.useState(false);
 
+    const toggleVisibility = () => {
+        // Show the button after scrolling 300px
+        if (window.scrollY > 300) {
+            setIsVisible(true);
+        } else {
+            setIsVisible(false);
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
+    // Set up scroll listener
+    React.useEffect(() => {
+        window.addEventListener('scroll', toggleVisibility);
+        return () => {
+            window.removeEventListener('scroll', toggleVisibility);
+        };
+    }, []);
+
+    return (
+        <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-3">
+            
+            {/* 1. Back to Top Button (Visible on scroll) */}
+            <button
+                onClick={scrollToTop}
+                className={`transition-opacity duration-300 p-3 rounded-full bg-indigo-700 text-white shadow-xl hover:bg-indigo-800 transform hover:scale-105 active:scale-95 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5 pointer-events-none'
+                }`}
+                aria-label="Go to top of page"
+            >
+                {/* Plane icon rotated to look like it's taking off */}
+                <Plane className="w-5 h-5 -rotate-90" /> 
+            </button>
+            
+            {/* 2. RSVP Button (Always visible and prominent) */}
+            <a 
+                href={formLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center px-5 py-3 text-sm font-bold rounded-full shadow-2xl text-white bg-pink-600 hover:bg-pink-700 transition duration-300 transform hover:scale-105 active:scale-95 whitespace-nowrap"
+            >
+                <CheckCircle className="w-5 h-5 inline mr-2" />
+                {language === 'en' ? 'RSVP / Confirm' : '참석 확인'}
+            </a>
+        </div>
+    );
+};
 /**
  * Language Box Component (replaces LanguageBox)
  * Renders content based on the selected language.
@@ -92,8 +188,8 @@ const LanguageBox = ({ language, enContent, koContent }) => {
     ];
 
     // Helper component for content sections
-    const Section = ({ icon: Icon, title, iconColor, children }) => (
-        <div className="py-6 border-b border-gray-200">
+    const Section = ({id, icon: Icon, title, iconColor, children }) => (
+         <div id={id} className="py-6 border-b border-gray-200 scroll-mt-20"> 
             <div className="flex items-center mb-4 gap-3">
                 <Icon className={`w-6 h-6 ${iconColor}`} />
                 <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">{title}</h2>
@@ -153,7 +249,7 @@ const App = () => {
                         backgroundImage: `linear-gradient(to bottom, rgba(245, 247, 198, 0.2), rgba(237, 235, 224, 0.3)), url(${bannerimg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        backgroundColor: '#581c87', // Fallback color
+                        backgroundColor: '#1541d1', // Fallback color
                     }}
                 >
                      <p className="text-base md:text-2xl font-bold mb-2 opacity-90"> {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}</p>
@@ -174,9 +270,10 @@ const App = () => {
 
                 <main className="p-3 sm:p-8">
                     <LanguageSwitcher language={language} setLanguage={setLanguage} />
-                    
+                    <NavigationTabs language={language}  />
+
                     {/* Welcome Section */}
-                    <Section icon={CheckCircle} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
+                    <Section id="welcome" icon={CheckCircle} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
                         <LanguageBox
                             language={language}
                               enContent={<p>We are deeply grateful that you are travelling from afar to celebrate this joyful occasion with us. To assist in your travel planning, we have prepared the following information and recommendations.</p>}
@@ -185,7 +282,7 @@ const App = () => {
                     </Section>
 
                     {/* Airport Section */}
-                    <Section icon={Plane}  title={language === 'en' ? "Getting to Malaysia (Airport Information)" : "말레이시아 도착 (공항 정보)"} iconColor="text-indigo-600">
+                    <Section id="airport" icon={Plane}  title={language === 'en' ? "Getting to Malaysia (Airport Information)" : "말레이시아 도착 (공항 정보)"} iconColor="text-indigo-600">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -208,7 +305,7 @@ const App = () => {
                     </Section>
                     
                     {/* Visa Section */}
-                    <Section icon={BookUser} title={language === 'en' ? "Visa Information and Entry Requirements" : "비자 및 입국 요구 사항"}iconColor="text-yellow-600">
+                    <Section id="visa" icon={BookUser} title={language === 'en' ? "Visa Information and Entry Requirements" : "비자 및 입국 요구 사항"}iconColor="text-yellow-600">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -229,7 +326,7 @@ const App = () => {
                     </Section>
 
                     {/* Congestion Section */}
-                    <Section icon={TrainFront} title={language === 'en' ? "Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" : "송가이시풋/이포 여행 (공휴일 교통拥旺 경고!)"} iconColor="text-red-600">
+                    <Section id="congestion"  icon={TrainFront} title={language === 'en' ? "Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" : "송가이시풋/이포 여행 (공휴일 교통拥旺 경고!)"} iconColor="text-red-600">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -276,7 +373,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
 
                     {/* Accommodation Section */}
-                    <Section icon={Hotel} title={language === 'en' ? "Accommodation" : "숙소"} iconColor="text-teal-600">
+                    <Section id="accommodation" icon={Hotel} title={language === 'en' ? "Accommodation" : "숙소"} iconColor="text-teal-600">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -313,7 +410,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
 
                     {/* Experience Section */}
-                    <Section icon={Coffee} title={language === 'en' ? "Things to Experience in Ipoh" : "이포에서 체험할 것"} iconColor="text-amber-600">
+                    <Section id="experience" icon={Coffee} title={language === 'en' ? "Things to Experience in Ipoh" : "이포에서 체험할 것"} iconColor="text-amber-600">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -334,7 +431,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
 
                     {/* Service Schedule Section */}
-                    <Section icon={MapPin} title={language === 'en' ? "Service Schedule of True Jesus Churches in the area" : "지역의 진정 교회의 예배 일정"} iconColor="text-purple-600">
+                    <Section id="schedule" icon={MapPin} title={language === 'en' ? "Service Schedule of True Jesus Churches in the area" : "지역의 진정 교회의 예배 일정"} iconColor="text-purple-600">
                         <p className="text-sm italic text-gray-600 mb-6">
                             *{language === 'en' ? "The service times are subject to change. Please confirm locally if necessary." : "예배 시간은 변경될 수 있습니다. 필요하다면 현지에 문의해 주세요."}
                         </p>
@@ -347,7 +444,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
                     
                     {/* Google Form Section */}
-                    <div className="py-6 last:border-b-0">
+                    <div id ="rsvp" className="py-6 last:border-b-0 scroll-mt-20">
                         <div className="flex items-center mb-4 gap-3">
                             <CheckCircle className="w-6 h-6 text-pink-600" />
                             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">
@@ -357,7 +454,8 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                         
                         <div className="grid md:grid-cols-2 gap-8 mt-4">
                             {/* English Column */}
-                           {language ==='en' &&  (<div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
+                           {language ==='en' &&  (
+                            <div className="p-4 bg-pink-50 rounded-xl border border-pink-200 shadow-md md:col-span-2">
                                 <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">Action Required (English)</h3>
                                 <p className="text-gray-700 text-sm leading-relaxed">
                                     Once everything is booked, please fill out this Google Form so that we can be informed about your arrival and departure.
@@ -425,6 +523,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
 
                 </main>
             </div>
+              <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
         </div>
     );
 };
