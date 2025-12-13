@@ -21,7 +21,7 @@ const NavigationTabs = ({ language }) => {
             <div className="flex items-center justify-start py-1">
                 
                 {/* Tabs Container - Allows horizontal scrolling on small screens */}
-                <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-2 pr-4 scrollbar-hide"> 
+                <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
                     {SECTIONS.map((section) => (
                         <a // Changed from button to <a> for native anchor linking
                             key={section.id}
