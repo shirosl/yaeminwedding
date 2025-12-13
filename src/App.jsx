@@ -16,8 +16,9 @@ const SECTIONS = [
 const NavigationTabs = ({ language }) => {
      return (
         // Wrapper for the entire sticky navigation bar
-        <div className="sticky-nav-container sticky top-0 z-10 w-full bg-white shadow-xl border-b border-gray-100 -mx-8 px-8">
-            <div className="flex items-center justify-start py-3 max-w-7xl mx-auto">
+        <div className="sticky-nav-container sticky top-0 z-10 w-full bg-white shadow-xl border-b border-gray-100 ">
+            <div className="p-3 sm:px-8">
+            <div className="flex items-center justify-start py-1">
                 
                 {/* Tabs Container - Allows horizontal scrolling on small screens */}
                 <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-2 pr-4 scrollbar-hide"> 
@@ -42,6 +43,7 @@ const NavigationTabs = ({ language }) => {
                     </a>
                 </div>
                 
+            </div>
             </div>
         </div>
     );
@@ -240,7 +242,7 @@ const App = () => {
 
     return (
          <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
-            <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-yellow-50 shadow-2xl rounded-2xl overflow-hidden">
+            <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-yellow-50 shadow-2xl rounded-2xl">
                 
                 {/* Header Section */}
                 <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
@@ -268,9 +270,12 @@ const App = () => {
 
                 </header>
 
-                <main className="p-3 sm:p-8">
-                    <LanguageSwitcher language={language} setLanguage={setLanguage} />
                     <NavigationTabs language={language}  />
+                    <div className="p-3 sm:px-8 pt-4 pb-0">
+                    <LanguageSwitcher language={language} setLanguage={setLanguage} />
+                    </div>
+                    
+                <main className="p-3 sm:p-8 pt-0 pb-8">                    
 
                     {/* Welcome Section */}
                     <Section id="welcome" icon={CheckCircle} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
@@ -325,8 +330,8 @@ const App = () => {
                         />
                     </Section>
 
-                    {/* Congestion Section */}
-                    <Section id="congestion"  icon={TrainFront} title={language === 'en' ? "Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" : "송가이시풋/이포 여행 (공휴일 교통拥旺 경고!)"} iconColor="text-red-600">
+                    {/* Travel Section */}
+                    <Section id="travel"  icon={TrainFront} title={language === 'en' ? "Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" : "송가이시풋/이포 여행 (공휴일 교통拥旺 경고!)"} iconColor="text-red-600">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -471,7 +476,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
 )}
                             
                             {/* Korean Column */}
-                            {language ==='ko' && (<div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
+                            {language ==='ko' && (<div className="p-4 bg-pink-50 rounded-xl border border-pink-200 shadow-md md:col-span-2">
                                 <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">요청 사항 (한국어)</h3>
                                 <p className="text-gray-700 text-sm leading-relaxed">
                                     모든 예약을 완료하시면 이 구글 폼을 작성해 주시면 감사드리겠습니다!
