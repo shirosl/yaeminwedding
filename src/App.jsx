@@ -7,8 +7,8 @@ const BANNER_PATH = bannerimg;
 const SECTIONS = [
     { id: 'welcome', enTitle: "Welcome", koTitle: "환영" },
     { id: 'airport', enTitle: "Airport & Visa", koTitle: "공항 및 비자" },
-    { id: 'travel', enTitle: "Local Travel", koTitle: "현지 이동" },
-    { id: 'accommodation', enTitle: "Accommodation", koTitle: "숙소" },
+    { id: 'travel', enTitle: "Transportation", koTitle: "교통" },
+    { id: 'accommodation', enTitle: "Stays", koTitle: "숙소" },
     { id: 'experience', enTitle: "Experience Ipoh", koTitle: "이포 체험" },
     { id: 'schedule', enTitle: "Church Schedule", koTitle: "예배 시간" },
 ];
