@@ -242,10 +242,10 @@ const App = () => {
 
     return (
          <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
-            <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-yellow-50 shadow-2xl rounded-2xl">
+            <div className="w-full max-w-7xl mx-2 sm:mx-8 bg-yellow-50 shadow-2xl rounded-2xl">
                 
                 {/* Header Section */}
-                <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
+                <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl flex flex-col justify-center items-center" 
                     style={{
                         minHeight: '300px', // Ensures minimum height even if background image is missing/failing
                         backgroundImage: `linear-gradient(to bottom, rgba(245, 247, 198, 0.2), rgba(237, 235, 224, 0.3)), url(${bannerimg})`,
@@ -254,8 +254,8 @@ const App = () => {
                         backgroundColor: '#1541d1', // Fallback color
                     }}
                 >
-                     <p className="text-base md:text-2xl font-bold mb-2 opacity-90"> {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}</p>
-                    <h1 className="text-xl md:text-3xl font-extrabold mb-1">{language === 'en' ? 'Shiro Chin & Yae Min Joh’s Wedding' : 'Shiro Chin & 조예민 결혼식'}</h1>
+                     <p className="text-base md:text-xl font-bold mb-2 opacity-90"> {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}</p>
+                    <h2 className="text-3xl md:text-5xl font-extrabold mb-1">{language === 'en' ? 'Shiro Chin & Yae Min Joh’s Wedding' : 'Shiro Chin & 조예민 결혼식'}</h2>
                     <p className="mt-4 text-base sm:text-lg font-medium">
                         {language === 'en' ? 'Sunday, 22 March 2026 at 11 a.m.' : '2026년 3월 22일(일요일) 오전 11 a.m.'}
                     </p>
