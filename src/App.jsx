@@ -3,6 +3,47 @@ import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, Externa
 import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
+
+const LanguageSwitcher = ({ language, setLanguage }) => (
+    <div className="flex justify-center space-x-4 mb-8">
+        <button
+            onClick={() => setLanguage('en')}
+            className={`px-6 py-2 rounded-full font-bold text-sm transition-all shadow-md transform hover:scale-105 ${
+                language === 'en'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-indigo-50 hover:text-indigo-600'
+            }`}
+        >
+            English
+        </button>
+        <button
+            onClick={() => setLanguage('ko')}
+            className={`px-6 py-2 rounded-full font-bold text-sm transition-all shadow-md transform hover:scale-105 ${
+                language === 'ko'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-700 border border-gray-300 hover:bg-indigo-50 hover:text-indigo-600'
+            }`}
+        >
+            한국어
+        </button>
+    </div>
+);
+
+/**
+ * Language Box Component (replaces LanguageBox)
+ * Renders content based on the selected language.
+ */
+const LanguageBox = ({ language, enContent, koContent }) => {
+    const content = language === 'en' ? enContent : koContent;
+    
+    return (
+        <div className="p-4 bg-gray-50 rounded-xl shadow-inner mt-4">
+            <div className="text-gray-700 text-sm leading-relaxed">
+                {content}
+            </div>
+        </div>
+    );
+};
     const contact = {
         email: "shiroandyaemin@gmail.com",
         shiroPhone: "+60 12 500 1928",
@@ -62,24 +103,9 @@ const BANNER_PATH = bannerimg;
     );
 
     // Helper component for dual language boxes
-    const DualLanguageBox = ({ titleEn, contentEn, titleKo, contentKo }) => (
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mt-4">
-            <div className="p-6 bg-gray-50 rounded-xl shadow-inner">
-                <h3 className="text-base sm:text-lg font-bold text-gray-700 border-b pb-1 mb-3">{titleEn}</h3>
-                <div className="text-gray-700 text-sm leading-relaxed">
-                    {contentEn}
-                </div>
-            </div>
-            <div className="p-6 bg-gray-50 rounded-xl shadow-inner">
-                <h3 className="text-base sm:text-lg font-bold text-gray-700 border-b pb-1 mb-3">{titleKo}</h3>
-                <div className="text-gray-700 text-sm leading-relaxed">
-                    {contentKo}
-                </div>
-            </div>
-        </div>
-    );
 
-    const ChurchScheduleTable = ({ church }) => (
+
+    const ChurchScheduleTable = ({ church,language }) => (
         <div className={`p-6 rounded-xl shadow-lg border-2 ${church.name.includes('Sungai Siput') ? 'bg-indigo-50 border-indigo-300' : 'bg-white border-gray-200'}`}>
             <h4 className="text-lg sm:text-xl font-bold mb-2 flex items-center gap-2 text-gray-800">
                 <MapPin className="w-5 h-5 text-indigo-500" />
@@ -94,10 +120,10 @@ const BANNER_PATH = bannerimg;
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-100">
                         <tr>
-                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">Day</th>
-                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">Time</th>
-                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/2">Service / Class</th>
-                        </tr>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/6">{language === 'en' ? 'Day' : '요일'}</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/3">{language === 'en' ? 'Time' : '시간'}</th>
+                            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/2">{language === 'en' ? 'Service / Class' : '예배 / 수업'}</th>
+                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                         {church.schedule.map((item, index) => (
@@ -112,38 +138,10 @@ const BANNER_PATH = bannerimg;
             </div>
         </div>
     );
-     const ImageErrorContent = () => (
-        <div className="p-4 bg-red-800 bg-opacity-70 rounded-lg">
-            <AlertTriangle className="w-8 h-8 text-yellow-300 mx-auto mb-2" />
-            <p className="text-lg font-bold text-yellow-300">Cannot Load Image (404 Error)</p>
-            <p className="text-sm font-medium text-white mt-1">
-                Browser looked for: <code className="bg-red-700 p-1 rounded font-mono">{BANNER_PATH}</code>
-            </p>
-            <p className="text-xs text-white italic mt-1">
-                Please ensure the file is in the root of your public folder with the exact name and extension.
-            </p>
-        </div>
-    );
-const BannerContent = () => (
-        <>
-            <p className="text-base sm:text-xl font-light mb-2 opacity-90">Guest Travel Information</p>
-            <h1 className="text-3xl sm:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
-            <h1 className="text-lg sm:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
-            <p className="mt-4 text-base sm:text-lg font-medium">
-                Sunday, 22 March 2026 at 11 a.m.
-            </p>
-            <div className="mt-2 flex items-center justify-center">
-                <MapPin className="w-5 h-5 mr-2" />
-                <a href={contact.churchMapLink} target="_blank" rel="noopener noreferrer" 
-                   className="hover:underline text-indigo-200 text-sm sm:text-base">
-                  True Jesus Church, Sungai Siput (真耶穌教會 和丰教会), Perak, Malaysia
-                </a>
-            </div>
-        </>
-    );
 // Main App component which is the default export
 const App = () => {
-    
+     const [language, setLanguage] = React.useState('en');
+
     return (
          <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
             <div className="w-full max-w-7xl mx-2 sm:mx-10 bg-yellow-50 shadow-2xl rounded-2xl overflow-hidden">
@@ -151,18 +149,17 @@ const App = () => {
                 {/* Header Section */}
                 <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl" 
                     style={{
-                        minHeight: '400px', // Ensures minimum height even if background image is missing/failing
+                        minHeight: '300px', // Ensures minimum height even if background image is missing/failing
                         backgroundImage: `linear-gradient(to bottom, rgba(245, 247, 198, 0.2), rgba(237, 235, 224, 0.3)), url(${bannerimg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundColor: '#581c87', // Fallback color
                     }}
                 >
-                     <p className="text-base md:text-2xl font-bold mb-2 opacity-90">Guest Travel Information</p>
-                    <h1 className="text-3xl md:text-5xl font-extrabold mb-1">Shiro Chin & Yae Min Joh’s Wedding</h1>
-                    <h1 className="text-lg md:text-3xl font-extrabold opacity-95">Shiro Chin & 조예민 결혼식</h1>
+                     <p className="text-base md:text-2xl font-bold mb-2 opacity-90"> {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}</p>
+                    <h1 className="text-xl md:text-3xl font-extrabold mb-1">{language === 'en' ? 'Shiro Chin & Yae Min Joh’s Wedding' : 'Shiro Chin & 조예민 결혼식'}</h1>
                     <p className="mt-4 text-base sm:text-lg font-medium">
-                        Sunday, 22 March 2026 at 11 a.m.
+                        {language === 'en' ? 'Sunday, 22 March 2026 at 11 a.m.' : '2026년 3월 22일(일요일) 오전 11 a.m.'}
                     </p>
                     <div className="mt-2 flex items-center justify-center">
                         <MapPin className="w-5 h-5 mr-2" />
@@ -176,22 +173,22 @@ const App = () => {
                 </header>
 
                 <main className="p-3 sm:p-8">
+                    <LanguageSwitcher language={language} setLanguage={setLanguage} />
                     
                     {/* Welcome Section */}
-                    <Section icon={CheckCircle} title="Welcome to Malaysia" iconColor="text-green-600">
-                        <DualLanguageBox
-                            titleEn="English"
-                            contentEn={<p>We are deeply grateful that you are travelling from afar to celebrate this joyful occasion with us. To assist in your travel planning, we have prepared the following information and recommendations.</p>}
-                            titleKo="한국어"
-                            contentKo={<p>먼 길을 오셔서 저희의 소중한 날을 함께 축하해 주심에 진심으로 감사드립니다. 하객 여러분의 여행 준비에 도움이 될 수 있도록 아래와 같이 안내드립니다.</p>}
+                    <Section icon={CheckCircle} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
+                        <LanguageBox
+                            language={language}
+                              enContent={<p>We are deeply grateful that you are travelling from afar to celebrate this joyful occasion with us. To assist in your travel planning, we have prepared the following information and recommendations.</p>}
+                            koContent={<p>먼 길을 오셔서 저희의 소중한 날을 함께 축하해 주심에 진심으로 감사드립니다. 하객 여러분의 여행 준비에 도움이 될 수 있도록 아래와 같이 안내드립니다.</p>}
                         />
                     </Section>
 
                     {/* Airport Section */}
-                    <Section icon={Plane} title="Getting to Malaysia (Airport Information)" iconColor="text-indigo-600">
-                        <DualLanguageBox
-                            titleEn="English"
-                            contentEn={
+                    <Section icon={Plane}  title={language === 'en' ? "Getting to Malaysia (Airport Information)" : "말레이시아 도착 (공항 정보)"} iconColor="text-indigo-600">
+                        <LanguageBox
+                            language={language}
+                            enContent={
                                 <>
                                     <p className="font-bold text-gray-700">Nearest International Airport:</p>
                                     <p>Kuala Lumpur International Airport (KLIA / KLIA2) – approximately 2.5 to 3 hours by car to Ipoh / Sungai Siput.</p>
@@ -199,8 +196,7 @@ const App = () => {
                                     <p>Sultan Azlan Shah Airport in Ipoh (IPH) – about 1 hour by car to True Jesus Church Sungai Siput.</p>
                                 </>
                             }
-                            titleKo="한국어"
-                            contentKo={
+                            koContent={
                                 <>
                                     <p className="font-bold text-gray-700">가장 가까운 국제공항:</p>
                                     <p>쿠알라룸푸르 국제공항 (KLIA / KLIA2) – 이포/숭가이시풋까지 약 2.5~3 시간 거리</p>
@@ -212,18 +208,17 @@ const App = () => {
                     </Section>
                     
                     {/* Visa Section */}
-                    <Section icon={BookUser} title="Visa Information and Entry Requirements" iconColor="text-yellow-600">
-                        <DualLanguageBox
-                            titleEn="English"
-                            contentEn={
+                    <Section icon={BookUser} title={language === 'en' ? "Visa Information and Entry Requirements" : "비자 및 입국 요구 사항"}iconColor="text-yellow-600">
+                        <LanguageBox
+                            language={language}
+                            enContent={
                                 <ul className="list-disc ml-6 space-y-2">
                                   <li>Most guests (Korea, New Zealand, etc.) may enter Malaysia visa-free for short stays. Please confirm the latest regulations prior to departure.</li>
                                   <li>Ensure your passport is valid for at least 6 months from the date you exit Malaysia.</li>
                                   <li>Foreign nationals must complete the <span className="font-bold">Malaysia Digital Arrival Card (MDAC)</span> prior to arrival (within 3 days before arrival): <a href="https://imigresen-online.imi.gov.my/mdac/main" target="_blank" className="text-blue-600 hover:underline">MDAC Registration <ExternalLink size={13} className="inline mb-0.5" /></a>.</li>
                                 </ul>
                             }
-                            titleKo="한국어"
-                            contentKo={
+                            koContent={
                                 <ul className="list-disc ml-6 space-y-2">
                                   <li>대한민국, 뉴질랜드 등 대부분의 국가는 단기 체류 시 무비자 입국이 가능합니다. 최신 입국 규정을 한 번 더 확인하시기 바랍니다.</li>
                                   <li>말레이시아 출국일로부터 여권 유효기간이 최소 6 개월 이상 남아 있는지 확인하십시오.</li>
@@ -234,10 +229,10 @@ const App = () => {
                     </Section>
 
                     {/* Congestion Section */}
-                    <Section icon={TrainFront} title="Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" iconColor="text-red-600">
-                        <DualLanguageBox
-                            titleEn="English"
-                            contentEn={
+                    <Section icon={TrainFront} title={language === 'en' ? "Travel to Sungai Siput / Ipoh (Holiday Congestion Alert!)" : "송가이시풋/이포 여행 (공휴일 교통拥旺 경고!)"} iconColor="text-red-600">
+                        <LanguageBox
+                            language={language}
+                            enContent={
                                 <>
                                     <p className="font-bold text-red-600 mb-2">Warning: March 21-22 is a major holiday, causing severe traffic congestion on the KL-Ipoh route. So if you are travelling by car or bus, travel time will take
 much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
@@ -257,8 +252,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     <p className="mt-4">In Ipoh, taxis and Grab are easy to find.</p>
                                 </>
                             }
-                            titleKo="한국어"
-                            contentKo={
+                            koContent={
                                 <>
                                     <p className="font-bold text-red-600 mb-2">주의: 3월 21-22일은 주요 공휴일로, KL-이포 노선에 심각한 교통 체증이 예상됩니다. 
                                       따라서 자동차나 버스로 이동하시는 경우 평소보다 이동 시간이 훨씬 길어지고 쿠알라룸푸르-이포 노선이 매우 혼잡할 수 있습니다. </p>
@@ -282,10 +276,10 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
 
                     {/* Accommodation Section */}
-                    <Section icon={Hotel} title="Accommodation" iconColor="text-teal-600">
-                        <DualLanguageBox
-                            titleEn="English"
-                            contentEn={
+                    <Section icon={Hotel} title={language === 'en' ? "Accommodation" : "숙소"} iconColor="text-teal-600">
+                        <LanguageBox
+                            language={language}
+                            enContent={
                                 <>
                                 <p>Please book your own hotel in Sungai Siput or Ipoh (near Ipoh bus terminal or Ipoh train station) as soon as possible because reservations are filling up fast. </p>
                                     
@@ -303,8 +297,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                 }    
                                 </>
                             }
-                            titleKo="한국어"
-                            contentKo={
+                            koContent={
                                 <>
                                 <p>숭가이 시풋 또는 이포(이포 버스 터미널 또는 이포 기차역 근처)에 있는 호텔은 예약이 빠르게 마감되고 있으니 가능한 한 빨리 예약해 주세요.  </p>
                                     {/**<p>결혼식장과 가까운 <strong>이포 (Ipoh)</strong> 지역 숙박을 추천드립니다. 다양한 호텔이 있으며 접근성이 좋습니다.</p>
@@ -320,18 +313,17 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
 
                     {/* Experience Section */}
-                    <Section icon={Coffee} title="Things to Experience in Ipoh" iconColor="text-amber-600">
-                        <DualLanguageBox
-                            titleEn="English"
-                            contentEn={
+                    <Section icon={Coffee} title={language === 'en' ? "Things to Experience in Ipoh" : "이포에서 체험할 것"} iconColor="text-amber-600">
+                        <LanguageBox
+                            language={language}
+                            enContent={
                                 <ul className="list-disc ml-6 space-y-2">
                                     <li>Explore <strong>Ipoh Old Town</strong> (heritage buildings, famous white coffee).</li>
                                     <li>Visit <strong>Kek Lok Tong Cave Temple</strong> or <strong>Kellie’s Castle</strong>.</li>
                                     <li>Savour local specialties: <strong>Ipoh Hor Fun, Bean Sprout Chicken, and Salted Chicken</strong>.</li>
                                 </ul>
                             }
-                            titleKo="한국어"
-                            contentKo={
+                            koContent={
                                 <ul className="list-disc ml-6 space-y-2">
                                     <li><strong>이포 올드타운 산책</strong> (유서 깊은 건물, 유명 화이트 커피 카페 탐방)</li>
                                     <li><strong>극락동 (Kek Lok Tong) 석굴사원</strong> 또는 <strong>켈리 캐슬 (Kellie’s Castle) 관람</strong></li>
@@ -342,9 +334,9 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     </Section>
 
                     {/* Service Schedule Section */}
-                    <Section icon={MapPin} title="Service Schedule of True Jesus Churches in the area" iconColor="text-purple-600">
+                    <Section icon={MapPin} title={language === 'en' ? "Service Schedule of True Jesus Churches in the area" : "지역의 진정 교회의 예배 일정"} iconColor="text-purple-600">
                         <p className="text-sm italic text-gray-600 mb-6">
-                            *The service times are subject to change. Please confirm locally if necessary.
+                            *{language === 'en' ? "The service times are subject to change. Please confirm locally if necessary." : "예배 시간은 변경될 수 있습니다. 필요하다면 현지에 문의해 주세요."}
                         </p>
                         
                         <div className="space-y-8">
@@ -359,13 +351,13 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                         <div className="flex items-center mb-4 gap-3">
                             <CheckCircle className="w-6 h-6 text-pink-600" />
                             <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">
-                                RSVP and Travel Confirmation
+                                {language === 'en' ? 'RSVP and Travel Confirmation' : 'RSVP 및 여행 확인'}
                             </h2>
                         </div>
                         
                         <div className="grid md:grid-cols-2 gap-8 mt-4">
                             {/* English Column */}
-                            <div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
+                           {language ==='en' &&  (<div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
                                 <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">Action Required (English)</h3>
                                 <p className="text-gray-700 text-sm leading-relaxed">
                                     Once everything is booked, please fill out this Google Form so that we can be informed about your arrival and departure.
@@ -378,9 +370,10 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     </a>
                                 </div>
                             </div>
+)}
                             
                             {/* Korean Column */}
-                            <div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
+                            {language ==='ko' && (<div className="p-6 bg-pink-50 rounded-xl border border-pink-200 shadow-md">
                                 <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">요청 사항 (한국어)</h3>
                                 <p className="text-gray-700 text-sm leading-relaxed">
                                     모든 예약을 완료하시면 이 구글 폼을 작성해 주시면 감사드리겠습니다!
@@ -392,7 +385,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                         <ExternalLink size={16} className="ml-2" />
                                     </a>
                                 </div>
-                            </div>
+                            </div>)}
                         </div>
                     </div>
 
@@ -400,12 +393,11 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     <div className="pt-6">
                         <div className="flex items-center mb-4 gap-3">
                             <Mail className="w-6 h-6 text-gray-700" />
-                            <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">Contact Us / 문의 및 연락처</h2>
+                            <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">{language==='en' ? 'Contact Us' : '문의 및 연락처'}</h2>
                         </div>
                         
                         <p className="text-gray-700 mb-6">
-                          For any questions regarding travel or local arrangements, please do not hesitate to reach out.<br/>
-                          여행 또는 현지 관련 문의가 있으시면 편하게 연락 주세요.
+                          {language==='en' ? 'For any questions regarding travel or local arrangements, please do not hesitate to reach out.' : '여행 또는 현지 관련 문의가 있으시면 편하게 연락 주세요.'}
                         </p>
 
                         <div className="grid md:grid-cols-2 gap-6 text-sm">
@@ -425,9 +417,8 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                             </div>
                         </div>
                         
-                        <p className="mt-10 text-center text-lg text-gray-800 font-semibold italic">
-                          We sincerely look forward to sharing this special day with you in Malaysia.
-                          <br/>
+                        <p className="mt-10 text-center text-lg text-gray-800 font-semibold ">
+                          We sincerely look forward to sharing this special day with you in Malaysia.<br />
                           감사와 사랑의 마음을 담아, Shiro 와 예민 드림.
                         </p>
                     </div>
