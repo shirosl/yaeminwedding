@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, arrowBigUpDash} from 'lucide-react';
+import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash} from 'lucide-react';
 import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
@@ -72,7 +72,7 @@ const LanguageSwitcher = ({ language, setLanguage }) => (
         </button>
     </div>
 );
-const BackToTopAndRsvpButton = ({ language, formLink }) => {
+const BackToTopAndRsvpButton = ({ icon, language, formLink }) => {
     const [isVisible, setIsVisible] = React.useState(false);
 
     const toggleVisibility = () => {
@@ -111,7 +111,7 @@ const BackToTopAndRsvpButton = ({ language, formLink }) => {
                 aria-label="Go to top of page"
             >
                 {/* Plane icon rotated to look like it's taking off */}
-                <Plane className="w-5 h-5 -rotate-90" /> 
+                <ArrowBigUpDash className="w-5 h-5" /> 
             </button>
             
             {/* 2. RSVP Button (Always visible and prominent) */}
@@ -528,7 +528,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
 
                 </main>
             </div>
-              <BackToTopAndRsvpButton icon ={arrowBigUpDash} language={language} formLink={contact.formLink} />
+              <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
         </div>
     );
 };
