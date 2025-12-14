@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle } from 'lucide-react';
+import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, arrowBigUpDash} from 'lucide-react';
 import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
@@ -22,7 +22,7 @@ const NavigationTabs = ({ language }) => {
                 
                 {/* Tabs Container - Allows horizontal scrolling on small screens */}
                 <div className="flex-wrap flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
-                    {SECTIONS.map((section) => (
+                    {SECTIONS.map((section) => ( 
                         <a // Changed from button to <a> for native anchor linking
                             key={section.id}
                             href={`#${section.id}`} // Target the section ID
@@ -528,7 +528,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
 
                 </main>
             </div>
-              <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
+              <BackToTopAndRsvpButton icon ={arrowBigUpDash} language={language} formLink={contact.formLink} />
         </div>
     );
 };
