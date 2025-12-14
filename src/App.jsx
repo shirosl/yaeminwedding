@@ -21,7 +21,7 @@ const NavigationTabs = ({ language }) => {
             <div className="flex items-center justify-start py-1">
                 
                 {/* Tabs Container - Allows horizontal scrolling on small screens */}
-                <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
+                <div className="flex-wrap flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
                     {SECTIONS.map((section) => (
                         <a // Changed from button to <a> for native anchor linking
                             key={section.id}
@@ -241,7 +241,7 @@ const App = () => {
      const [language, setLanguage] = React.useState('en');
 
     return (
-         <div className="min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
+         <div className="w-screen min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
             <div className="w-full max-w-7xl mx-2 sm:mx-8 bg-yellow-50 shadow-2xl rounded-2xl">
                 
                 {/* Header Section */}
@@ -341,7 +341,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     <p className="font-bold mt-3">Travel Options:</p>
                                     <ul className="list-disc ml-6 space-y-2">
                                         <li><span className="font-semibold">By Car:</span> Approx 3 hours (will be much longer during the holiday).</li>
-                                        <li><span className="font-semibold">By Train (ETS):</span> KL Sentral to Ipoh (2.5 hours). <a href="http://www.ktmb.com.my" target="_blank" className="text-blue-600 hover:underline">Book ETS Tickets</a></li>
+                                        <li><span className="font-semibold">By Train (ETS):</span> KL Sentral to Ipoh (2.5 hours). <a href="https://online.ktmb.com.my" target="_blank" className="text-blue-600 hover:underline">Book ETS Tickets</a></li>
                                         <li><span className="font-semibold">By Bus:</span> KL to Ipoh (3-4 hours, heavy delays expected).</li>
                                     </ul>
                                     <p className="font-bold mt-4 text-green-700">Recommended Options:</p>
@@ -361,7 +361,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                     <p className="font-bold mt-3">이동 방법:</p>
                                     <ul className="list-disc ml-6 space-y-2">
                                         <li><span className="font-semibold">자가용:</span> 약 3 시간 소요 (공휴일 기간에는 훨씬 길어집니다).</li>
-                                        <li><span className="font-semibold">기차(ETS):</span> KL Sentral → Ipoh Station (2.5 시간). <a href="http://www.ktmb.com.my" target="_blank" className="text-blue-600 hover:underline">ETS 예약</a></li>
+                                        <li><span className="font-semibold">기차(ETS):</span> KL Sentral → Ipoh Station (2.5 시간). <a href="https://online.ktmb.com.my" target="_blank" className="text-blue-600 hover:underline">ETS 예약</a></li>
                                         <li><span className="font-semibold">버스:</span> KL → 이포 (3~4 시간, 심각한 지연 예상).</li>
                                     </ul>
                                     <p className="font-bold mt-4 text-green-700">권장 옵션:</p>
