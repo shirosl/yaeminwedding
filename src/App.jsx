@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash} from 'lucide-react';
+import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash, House} from 'lucide-react';
 import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
@@ -278,7 +278,7 @@ const App = () => {
                 <main className="p-3 sm:p-8 pt-0 pb-8">                    
 
                     {/* Welcome Section */}
-                    <Section id="welcome" icon={CheckCircle} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
+                    <Section id="welcome" icon={House} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
                         <LanguageBox
                             language={language}
                               enContent={<p>We are deeply grateful that you are travelling from afar to celebrate this joyful occasion with us. To assist in your travel planning, we have prepared the following information and recommendations.</p>}
