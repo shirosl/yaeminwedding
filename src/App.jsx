@@ -211,7 +211,7 @@ const LanguageBox = ({ language, enContent, koContent }) => {
             </h4>
             <p className="text-xs sm:text-sm text-gray-600 mb-3">{church.address}</p>
             <a href={church.mapLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-1 mb-4">
-                View on Google Maps <ExternalLink size={13} className="inline mb-0.5" />
+                {language === 'en' ? 'View on Google Maps' : 'Google 맵에서 보기'} <ExternalLink size={13} className="inline mb-0.5" />
             </a>
             
             <div className="overflow-x-auto">
@@ -251,7 +251,7 @@ const App = () => {
                         backgroundImage: `linear-gradient(to bottom, rgba(245, 247, 198, 0.2), rgba(237, 235, 224, 0.3)), url(${bannerimg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        backgroundColor: '#1541d1', // Fallback color
+                        backgroundColor: '#e3e8c9', // Fallback color
                     }}
                 >
                      <p className="text-base md:text-xl font-bold mb-2 opacity-90"> {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}</p>
@@ -262,7 +262,7 @@ const App = () => {
                     <div className="mt-2 flex items-center justify-center">
                         <MapPin className="w-5 h-5 mr-2" />
                         <a href={contact.churchMapLink} target="_blank" rel="noopener noreferrer" 
-                        className="hover:underline text-indigo-200 text-sm sm:text-base">
+                        className="hover:underline text-indigo-400 text-sm sm:text-base">
                         True Jesus Church, Sungai Siput (真耶穌教會 和丰教会), Perak, Malaysia
                         </a>
                     </div>
@@ -443,7 +443,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                         
                         <div className="space-y-8">
                             {churches.map((church, index) => (
-                                <ChurchScheduleTable key={index} church={church} />
+                                <ChurchScheduleTable key={index} language={language} church={church} />
                             ))}
                         </div>
                     </Section>
