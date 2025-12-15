@@ -156,10 +156,10 @@ const LanguageBox = ({ language, enContent, koContent }) => {
             address: "34, Taman Bukit Medan, 31100 Sungai Siput (U) Perak",
             mapLink: "https://maps.app.goo.gl/icPmi6eHBhsJGGvz5",
             schedule: [
-                { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat", time: "10:30am – 11:30am", service: "Sabbath Service" },
-                { day: "Sun", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]", },
-                { day: "Sun (22/3/2026)", time: "11:00am – 1:00pm", service: "Wedding", highlight: true },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service" },
+                { day: "Sat/토", time: "10:30am – 11:30am", service: "Sabbath Service" },
+                { day: "Sun/일", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]", },
+                { day: "Sun/일 (22/3/2026)", time: "11:00am – 1:00pm", service: "Wedding", highlight: true },
             ]
         },
         {
@@ -167,12 +167,12 @@ const LanguageBox = ({ language, enContent, koContent }) => {
             address: "10, Jalan Voon Thian Soo, 30250 Ipoh",
             mapLink: "https://maps.app.goo.gl/uEcn5bSTNJyakFSw9",
             schedule: [
-                { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat", time: "10:45am – 12:00pm", service: "Sabbath Service" },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service" },
+                { day: "Sat/토", time: "10:45am – 12:00pm", service: "Sabbath Service" },
                 {  time: "11:10am – 12:10pm", service: "REU Classes (Elementary)" },
                 {  time: "1:00pm – 2:00pm", service: "REU Classes (Junior)" },
                 {  time: "3:00pm – 4:00pm", service: "Afternoon Sabbath Service" },
-                { day: "Sun", time: "9:00am – 10:00am", service: "Morning Prayer" },
+                { day: "Sun/일", time: "9:00am – 10:00am", service: "Morning Prayer" },
             ]
         },
         {
@@ -180,8 +180,8 @@ const LanguageBox = ({ language, enContent, koContent }) => {
             address: "No. 24, Persiaran Tasek Timur 5, Taman Medan Bercham, 31400 Ipoh, Perak Darul Ridzuan",
             mapLink: "https://maps.app.goo.gl/XB2GZxMM9WSB8aoh7",
             schedule: [
-                { day: "Fri", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat", time: "11:00am – 12:00pm", service: "Morning Sabbath Service" },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service" },
+                { day: "Sat/토", time: "11:00am – 12:00pm", service: "Morning Sabbath Service" },
                 { time: "2:30pm – 3:30pm", service: "Afternoon Sabbath Service" },
                 { time: "4:00pm – 5:30pm", service: "REU Classes" },
                 { time: "6:30pm – 8:00pm", service: "Youth Service/ Choir Practice" },
