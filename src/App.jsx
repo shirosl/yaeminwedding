@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash, House} from 'lucide-react';
+import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash, House, DollarSign} from 'lucide-react';
 import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
@@ -72,7 +72,7 @@ const LanguageSwitcher = ({ language, setLanguage }) => (
         </button>
     </div>
 );
-const BackToTopAndRsvpButton = ({ icon, language, formLink }) => {
+const BackToTopAndRsvpButton = ({ language, formLink }) => {
     const [isVisible, setIsVisible] = React.useState(false);
 
     const toggleVisibility = () => {
@@ -128,6 +128,66 @@ const BackToTopAndRsvpButton = ({ icon, language, formLink }) => {
     );
 };
 /**
+ * Currency Converter Widget
+ */
+const CurrencyConverter = ({ language }) => {
+    const [myrAmount, setMyrAmount] = React.useState(100);
+    
+    // Static Exchange Rates (as of Dec 2025 - simplified for demo)
+    const RATES = {
+        KRW: 280.00, // 1 MYR ≈ 280 KRW
+        USD: 0.21,   // 1 MYR ≈ 0.21 USD
+    };
+
+    const handleInputChange = (e) => {
+        const value = parseFloat(e.target.value);
+        setMyrAmount(isNaN(value) ? 0 : value);
+    };
+
+    const convert = (amount, rate) => (amount * rate).toFixed(2);
+
+    const title = language === 'en' ? 'Quick Currency Converter' : '빠른 환율 변환기';
+    const myrLabel = language === 'en' ? 'MYR (Ringgit)' : 'MYR (링깃)';
+
+    return (
+        <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-md mt-4">
+            <h4 className="text-md font-semibold text-gray-700 flex items-center gap-2 mb-3 font-serif">
+                <DollarSign size={18} className="text-green-600" /> {title}
+            </h4>
+            
+            <label htmlFor="myr-input" className="block text-sm font-medium text-gray-500 mb-1">
+                {myrLabel}
+            </label>
+            <input
+                id="myr-input"
+                type="number"
+                value={myrAmount}
+                onChange={handleInputChange}
+                className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 mb-4 text-lg font-sans"
+                placeholder="Enter amount in MYR"
+            />
+
+            <div className="space-y-3">
+                <div className="flex justify-between items-center bg-green-50 p-3 rounded-lg">
+                    <span className="font-semibold text-green-800 font-sans">USD (Dollar):</span>
+                    <span className="text-xl font-bold text-green-900 font-serif">
+                        ${convert(myrAmount, RATES.USD)}
+                    </span>
+                </div>
+                <div className="flex justify-between items-center bg-blue-50 p-3 rounded-lg">
+                    <span className="font-semibold text-blue-800 font-sans">KRW (원):</span>
+                    <span className="text-xl font-bold text-blue-900 font-serif">
+                        ₩{convert(myrAmount, RATES.KRW)}
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
+
+/**
  * Language Box Component (replaces LanguageBox)
  * Renders content based on the selected language.
  */
@@ -152,39 +212,39 @@ const LanguageBox = ({ language, enContent, koContent }) => {
 
     const churches = [
         {
-            name: "Sungai Siput Church [Wedding Venue]",
+            name: "Sungai Siput Church [Wedding Venue] 성가시푸 교회 [결혼식 장소]",
             address: "34, Taman Bukit Medan, 31100 Sungai Siput (U) Perak",
             mapLink: "https://maps.app.goo.gl/icPmi6eHBhsJGGvz5",
             schedule: [
-                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat/토", time: "10:30am – 11:30am", service: "Sabbath Service" },
-                { day: "Sun/일", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]", },
-                { day: "Sun/일 (22/3/2026)", time: "11:00am – 1:00pm", service: "Wedding", highlight: true },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/종일 모임" },
+                { day: "Sat/토", time: "10:30am – 11:30am", service: "Sabbath Service/주일 모임" },
+                { day: "Sun/일", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]/REU 클래스 [취소]", },
+                { day: "Sun/일 (22/3/2026)", time: "11:00am – 1:00pm", service: "Wedding/결혼식", highlight: true },
             ]
         },
         {
-            name: "Ipoh Church",
+            name: "Ipoh Church /이포 교회",
             address: "10, Jalan Voon Thian Soo, 30250 Ipoh",
             mapLink: "https://maps.app.goo.gl/uEcn5bSTNJyakFSw9",
             schedule: [
-                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat/토", time: "10:45am – 12:00pm", service: "Sabbath Service" },
-                {  time: "11:10am – 12:10pm", service: "REU Classes (Elementary)" },
-                {  time: "1:00pm – 2:00pm", service: "REU Classes (Junior)" },
-                {  time: "3:00pm – 4:00pm", service: "Afternoon Sabbath Service" },
-                { day: "Sun/일", time: "9:00am – 10:00am", service: "Morning Prayer" },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/종일 모임" },
+                { day: "Sat/토", time: "10:45am – 12:00pm", service: "Sabbath Service/주일 모임" },
+                {  time: "11:10am – 12:10pm", service: "REU Classes (Elementary)/REU 클래스 (초등학교)" },
+                {  time: "1:00pm – 2:00pm", service: "REU Classes (Junior)/REU 클래스 (중학교)" },
+                {  time: "3:00pm – 4:00pm", service: "Afternoon Sabbath Service/주일 모임" },
+                { day: "Sun/일", time: "9:00am – 10:00am", service: "Morning Prayer/아침 모임" },
             ]
         },
         {
-            name: "Bercham Church",
+            name: "Bercham Church /베르참 교회",
             address: "No. 24, Persiaran Tasek Timur 5, Taman Medan Bercham, 31400 Ipoh, Perak Darul Ridzuan",
             mapLink: "https://maps.app.goo.gl/XB2GZxMM9WSB8aoh7",
             schedule: [
-                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service" },
-                { day: "Sat/토", time: "11:00am – 12:00pm", service: "Morning Sabbath Service" },
-                { time: "2:30pm – 3:30pm", service: "Afternoon Sabbath Service" },
-                { time: "4:00pm – 5:30pm", service: "REU Classes" },
-                { time: "6:30pm – 8:00pm", service: "Youth Service/ Choir Practice" },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/종일 모임" },
+                { day: "Sat/토", time: "11:00am – 12:00pm", service: "Morning Sabbath Service/주일 모임" },
+                { time: "2:30pm – 3:30pm", service: "Afternoon Sabbath Service/주일 모임" },
+                { time: "4:00pm – 5:30pm", service: "REU Classes/REU 클래스" },
+                { time: "6:30pm – 8:00pm", service: "Youth Service/ Choir Practice/ 청소년 모임" },
             ]
         }
     ];
@@ -375,6 +435,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                                 </>
                             }
                         />
+                        <CurrencyConverter language={language} />
                     </Section>
 
                     {/* Accommodation Section */}
@@ -506,7 +567,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                         <div className="grid md:grid-cols-2 gap-6 text-sm">
                             <div className="flex items-center p-3 bg-blue-50 text-blue-600 rounded-lg shadow-sm">
                                 <Mail className="w-5 h-5 text-blue-600 mr-3" />
-                                <span >Email: <a href={`mailto:${contact.email}`} className="text-blue-600 font-medium hover:underline">{contact.email}</a></span>
+                                <span >Email: <a href={`mailto:${contact.email}`} className="font-medium hover:underline">{contact.email}</a></span>
                             </div>
                             <div className="flex flex-col space-y-2">
                                 <div className="flex items-center p-3 bg-green-50 rounded-lg shadow-sm">
@@ -520,7 +581,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                             </div>
                         </div>
                         
-                        <p className="mt-10 text-center text-lg text-gray-800 font-semibold ">
+                        <p className="mt-10 text-center text-lg text-gray-800 font-semibold font_new ">
                           We sincerely look forward to sharing this special day with you in Malaysia.<br />
                           감사와 사랑의 마음을 담아, Shiro 와 예민 드림.
                         </p>
