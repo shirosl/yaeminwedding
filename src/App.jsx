@@ -21,7 +21,14 @@ const NavigationTabs = ({ language,scrolled, setLanguage }) => {
             <div className="flex items-center justify-start py-1">
                 
                 {/* Tabs Container - Allows horizontal scrolling on small screens */}
-                <div className="flex-wrap flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
+                <div className="flex gap-2 ml-4">
+
+                        <button onClick={() => setLanguage('en')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
+
+                        <button onClick={() => setLanguage('ko')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
+
+                    </div>
+                <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
                     {SECTIONS.map((section) => ( 
                         <a // Changed from button to <a> for native anchor linking
                             key={section.id}
@@ -42,13 +49,7 @@ const NavigationTabs = ({ language,scrolled, setLanguage }) => {
                         RSVP
                     </a>
                 </div>
-                <div className="flex gap-2 ml-4">
-
-                        <button onClick={() => setLanguage('en')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
-
-                        <button onClick={() => setLanguage('ko')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
-
-                    </div>
+                
             </div>
             </div>
             
