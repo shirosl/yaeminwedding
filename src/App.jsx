@@ -1,5 +1,5 @@
 import React from 'react';
-import { Plane, MapPin, BookUser, TrainFront, Hotel, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash, House, DollarSign} from 'lucide-react';
+import { Plane, MapPin, BookUser, TrainFront, Hotel,Heart, Coffee,Mail, Phone, ExternalLink, CheckCircle, ArrowBigUpDash, House, DollarSign} from 'lucide-react';
 import bannerimg from "../dist/wedding.png";
 // --- Data Definition ---dist/wedding.png
 const BANNER_PATH = bannerimg; 
@@ -13,10 +13,10 @@ const SECTIONS = [
     { id: 'schedule', enTitle: "Church Schedule", koTitle: "예배 시간" },
 ];
 
-const NavigationTabs = ({ language }) => {
+const NavigationTabs = ({ language,scrolled, setLanguage }) => {
      return (
         // Wrapper for the entire sticky navigation bar
-        <div className="sticky-nav-container sticky top-0 z-10 w-full bg-white shadow-xl border-b border-gray-100 ">
+        <div className={`sticky-nav-container sticky top-0 z-10 w-full transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
             <div className="p-3 sm:px-8">
             <div className="flex items-center justify-start py-1">
                 
@@ -42,14 +42,21 @@ const NavigationTabs = ({ language }) => {
                         RSVP
                     </a>
                 </div>
-                
+                <div className="flex gap-2 ml-4">
+
+                        <button onClick={() => setLanguage('en')} className={`w-20 h-8 rounded-full text-[12px] font-bold border p-0 flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>English</button>
+
+                        <button onClick={() => setLanguage('ko')} className={`w-21 h-8 rounded-full text-[12px] font-bold border p-0 flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>한국어</button>
+
+                    </div>
             </div>
             </div>
+            
         </div>
     );
 };
 const LanguageSwitcher = ({ language, setLanguage }) => (
-    <div className="flex justify-center space-x-4 mb-8">
+    <div className="flex gap-2 ml-4">
         <button
             onClick={() => setLanguage('en')}
             className={`px-6 py-2 rounded-full font-bold text-sm transition-all shadow-md transform hover:scale-105 ${
@@ -127,6 +134,43 @@ const BackToTopAndRsvpButton = ({ language, formLink }) => {
         </div>
     );
 };
+const CountdownTimer = ({ language }) => {
+    const calculateTimeLeft = () => {
+        const weddingDate = new Date('2026-03-22T11:00:00+08:00');
+        const difference = +weddingDate - +new Date();
+        let timeLeft = {};
+
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+            };
+        }
+        return timeLeft;
+    };
+
+    const [timeLeft, setTimeLeft] = React.useState(calculateTimeLeft());
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => setTimeLeft(calculateTimeLeft()), 60000);
+        return () => clearTimeout(timer);
+    }, [timeLeft]);
+
+    return (
+        <div className="flex gap-4 justify-center my-6">
+            {Object.entries(timeLeft).map(([unit, value]) => (
+                <div key={unit} className="flex flex-col items-center bg-white/20 backdrop-blur-sm rounded-lg p-2 min-w-[70px] border border-white/30">
+                    <span className="text-2xl font-bold font-serif">{value}</span>
+                    <span className="text-[10px] uppercase tracking-wider">
+                        {language === 'en' ? unit : (unit === 'days' ? '일' : unit === 'hours' ? '시간' : '분')}
+                    </span>
+                </div>
+            ))}
+        </div>
+    );
+};
+
 /**
  * Currency Converter Widget
  */
@@ -144,15 +188,19 @@ const CurrencyConverter = ({ language }) => {
         setMyrAmount(isNaN(value) ? 0 : value);
     };
 
-    const convert = (amount, rate) => (amount * rate).toFixed(2);
+    const convert = (amount, rate) => (amount * rate).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
     const title = language === 'en' ? 'Quick Currency Converter' : '빠른 환율 변환기';
     const myrLabel = language === 'en' ? 'MYR (Ringgit)' : 'MYR (링깃)';
 
     return (
-        <div className="bg-white border border-gray-200 p-4 rounded-xl shadow-md mt-4">
-            <h4 className="text-md font-semibold text-gray-700 flex items-center gap-2 mb-3 font-serif">
-                <DollarSign size={18} className="text-green-600" /> {title}
+         <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-sm mt-8 max-w-md mx-auto text-gray-900">
+
+            <h4 className="text-lg font-bold flex items-center gap-2 mb-4 font-serif">
+
+                <DollarSign size={20} className="text-emerald-600" /> 
+
+                {language === 'en' ? 'Currency Converter' : '환율 변환기'}
             </h4>
             
             <label htmlFor="myr-input" className="block text-sm font-medium text-gray-500 mb-1">
@@ -251,13 +299,15 @@ const LanguageBox = ({ language, enContent, koContent }) => {
 
     // Helper component for content sections
     const Section = ({id, icon: Icon, title, iconColor, children }) => (
-         <div id={id} className="py-6 border-b border-gray-200 scroll-mt-20"> 
-            <div className="flex items-center mb-4 gap-3">
+          <section id={id} className="py-12 border-b border-gray-100 scroll-mt-24 animate-fade-in"> 
+        <div className="flex items-center mb-6 gap-4">
+            <div className={`p-3 rounded-2xl bg-opacity-10 ${iconColor.replace('text-', 'bg-')}`}>
                 <Icon className={`w-6 h-6 ${iconColor}`} />
-                <h2 className="text-xl sm:text-2xl font-extrabold text-gray-800">{title}</h2>
             </div>
-            {children}
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 font-serif">{title}</h2>
         </div>
+        <div className="space-y-4">{children}</div>
+    </section>
     );
 
     // Helper component for dual language boxes
@@ -300,45 +350,72 @@ const LanguageBox = ({ language, enContent, koContent }) => {
 const App = () => {
      const [language, setLanguage] = React.useState('en');
 
+
+    const [scrolled, setScrolled] = React.useState(false);
+    React.useEffect(() => {
+
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => window.removeEventListener('scroll', handleScroll);
+
+    }, []);
+
     return (
          <div className="w-screen min-h-screen bg-gray-50 font-sans flex justify-center items-start py-8">
             <div className="w-full max-w-7xl mx-2 sm:mx-8 bg-yellow-50 shadow-2xl rounded-2xl">
-                
+                <NavigationTabs language={language} scrolled={scrolled} setLanguage={setLanguage} />
                 {/* Header Section */}
-                <header  className="relative text-indigo-500 p-3 sm:p-8 text-center rounded-t-2xl overflow-hidden shadow-xl flex flex-col justify-center items-center" 
-                    style={{
-                        minHeight: '300px', // Ensures minimum height even if background image is missing/failing
-                        backgroundImage: `linear-gradient(to bottom, rgba(245, 247, 198, 0.2), rgba(237, 235, 224, 0.3)), url(${bannerimg})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundColor: '#e3e8c9', // Fallback color
-                    }}
-                >
-                     <p className="text-base md:text-xl font-bold mb-2 opacity-90"> {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}</p>
-                    <h2 className="text-3xl md:text-5xl font-extrabold mb-1">{language === 'en' ? 'Shiro Chin & Yae Min Joh’s Wedding' : 'Shiro Chin & 조예민 결혼식'}</h2>
-                    <p className="mt-4 text-base sm:text-lg font-medium">
-                        {language === 'en' ? 'Sunday, 22 March 2026 at 11 a.m.' : '2026년 3월 22일(일요일) 오전 11 a.m.'}
+               <header className="relative h-[80vh] min-h-[600px] flex items-center justify-center text-white text-center px-4 overflow-hidden">
+
+                <div className="absolute inset-0 z-0">
+
+                    <div className="absolute inset-0 bg-black/50 z-10" />
+
+                    <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=2069&auto=format&fit=crop" alt="Ipoh Background" className="w-full h-full object-cover" />
+
+                </div>
+
+                
+
+                <div className="relative z-20 max-w-4xl animate-fade-in">
+
+                    <Heart className="w-12 h-12 mx-auto mb-6 text-pink-400 fill-pink-400" />
+
+                    <p className="text-lg md:text-xl font-light tracking-[0.2em] mb-4 uppercase">
+
+                        {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}
+               </p>
+                    <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
+
+                        {language === 'en' ? "Shiro & Yae Min's Wedding" : "Shiro & 조예민 결혼식"}
+
+                    </h1>
+
+                    <p className="text-xl md:text-2xl font-light mb-8 italic">
+
+                        {language === 'en' ? 'Sunday, 22 March 2026' : '2026년 3월 22일 일요일'}
+
                     </p>
-                    <div className="mt-2 flex items-center justify-center">
-                        <MapPin className="w-5 h-5 mr-2" />
-                        <a href={contact.churchMapLink} target="_blank" rel="noopener noreferrer" 
-                        className="hover:underline text-indigo-400 text-sm sm:text-base">
-                        True Jesus Church, Sungai Siput (真耶穌教會 和丰教会), Perak, Malaysia
-                        </a>
-                    </div>
+
+                    <CountdownTimer language={language} />
+
+                </div>
+
+            </header>
 
 
-                </header>
 
-                    <NavigationTabs language={language}  />
-                    <div className="p-3 sm:px-8 pt-4 pb-0">
+                    
+                    {/**<div className="p-3 sm:px-8 pt-4 pb-0">
                     <LanguageSwitcher language={language} setLanguage={setLanguage} />
-                    </div>
+                    </div>*/}
                     
                 <main className="p-3 sm:p-8 pt-0 pb-8">                    
 
                     {/* Welcome Section */}
-                    <Section id="welcome" icon={House} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-green-600">
+                    <Section id="welcome" icon={Heart} title={language === 'en' ? "Welcome to Malaysia" : "말레이시아 환영"}  iconColor="text-pink-500">
                         <LanguageBox
                             language={language}
                               enContent={<p>We are deeply grateful that you are travelling from afar to celebrate this joyful occasion with us. To assist in your travel planning, we have prepared the following information and recommendations.</p>}
@@ -347,7 +424,7 @@ const App = () => {
                     </Section>
 
                     {/* Airport Section */}
-                    <Section id="airport" icon={Plane}  title={language === 'en' ? "Getting to Malaysia (Airport Information)" : "말레이시아 도착 (공항 정보)"} iconColor="text-indigo-600">
+                    <Section id="airport" icon={Plane}  title={language === 'en' ? "Getting to Malaysia (Airport Information)" : "말레이시아 도착 (공항 정보)"} iconColor="text-indigo-400">
                         <LanguageBox
                             language={language}
                             enContent={
@@ -518,41 +595,21 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                             </h2>
                         </div>
                         
-                        <div className="grid md:grid-cols-2 gap-8 mt-4">
-                            {/* English Column */}
-                           {language ==='en' &&  (
-                            <div className="p-4 bg-pink-50 rounded-xl border border-pink-200 shadow-md md:col-span-2">
-                                <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">Action Required (English)</h3>
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                    Once everything is booked, please fill out this Google Form so that we can be informed about your arrival and departure.
-                                </p>
-                                <div className="mt-4 text-center">
-                                    <a href={contact.formLink} target="_blank" rel="noopener noreferrer"
-                                       className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-pink-600 hover:bg-pink-700 transition duration-150">
-                                        Google Form Link 
-                                        <ExternalLink size={16} className="ml-2" />
-                                    </a>
-                                </div>
-                            </div>
-)}
-                            
-                            {/* Korean Column */}
-                            {language ==='ko' && (<div className="p-4 bg-pink-50 rounded-xl border border-pink-200 shadow-md md:col-span-2">
-                                <h3 className="text-lg font-bold text-pink-700 border-b border-pink-300 pb-1 mb-3">요청 사항 (한국어)</h3>
-                                <p className="text-gray-700 text-sm leading-relaxed">
-                                    모든 예약을 완료하시면 이 구글 폼을 작성해 주시면 감사드리겠습니다!
-                                </p>
-                                 <div className="mt-4 text-center">
-                                    <a href={contact.formLink} target="_blank" rel="noopener noreferrer"
-                                       className="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-md text-white bg-pink-600 hover:bg-pink-700 transition duration-150">
-                                        구글 폼 링크 
-                                        <ExternalLink size={16} className="ml-2" />
-                                    </a>
-                                </div>
-                            </div>)}
-                        </div>
-                    </div>
-
+                    <div id="rsvp" className="mt-20 p-12 bg-indigo-900 rounded-[3rem] text-white text-center shadow-2xl">
+                    <Heart className="w-12 h-12 mx-auto mb-6 text-pink-400 fill-pink-400" />
+                    <h3 className="text-3xl font-serif font-bold mb-4">
+                        {language === 'en' ? "Are you coming?" : "함께해 주시겠어요?"}
+                    </h3>
+                    <p className="text-indigo-200 mb-8 max-w-md mx-auto">
+                        {language === 'en' 
+                            ? "Please let us know your travel plans and attendance status by confirming through the form below."
+                            : "준비에 큰 도움이 될 수 있도록 아래 버튼을 통해 참석 여부와 여행 계획을 알려주세요."}
+                    </p>
+                    <a href={contact.formLink} target="_blank" className="inline-flex items-center gap-2 bg-pink-600 hover:bg-pink-700 text-white px-10 py-4 rounded-full font-bold text-lg transition-all transform hover:scale-105 active:scale-95">
+                        <CheckCircle size={20}/> {language === 'en' ? "RSVP / Confirm Now" : "참석 확인하기"}
+                    </a>
+                </div>
+                </div>
                     {/* Contact Section */}
                     <div className="pt-6">
                         <div className="flex items-center mb-4 gap-3">
@@ -581,13 +638,17 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                             </div>
                         </div>
                         
-                        <p className="mt-10 text-center text-lg text-gray-800 font-semibold font_new ">
-                          We sincerely look forward to sharing this special day with you in Malaysia.<br />
-                          감사와 사랑의 마음을 담아, Shiro 와 예민 드림.
-                        </p>
                     </div>
 
                 </main>
+                <footer className="py-12 text-center text-gray-400 text-sm">
+                <p>&copy; 2026 Shiro & Yae Min. We sincerely look forward to sharing this special day with you in Malaysia.<br />
+                          감사와 사랑의 마음을 담아, Shiro 와 예민 드림.</p>
+                <div className="flex justify-center gap-6 mt-4">
+                    <a href={`mailto:${contact.email}`} className="hover:text-indigo-600 transition-colors"><Mail size={18}/></a>
+                    <a href={`tel:${contact.shiroPhone}`} className="hover:text-indigo-600 transition-colors"><Phone size={18}/></a>
+                </div>
+            </footer>
             </div>
               <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
         </div>
