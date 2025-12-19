@@ -44,9 +44,9 @@ const NavigationTabs = ({ language,scrolled, setLanguage }) => {
                 </div>
                 <div className="flex gap-2 ml-4">
 
-                        <button onClick={() => setLanguage('en')} className={`w-20 h-8 rounded-full text-[12px] font-bold border p-0 flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>English</button>
+                        <button onClick={() => setLanguage('en')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
 
-                        <button onClick={() => setLanguage('ko')} className={`w-21 h-8 rounded-full text-[12px] font-bold border p-0 flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>한국어</button>
+                        <button onClick={() => setLanguage('ko')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
 
                     </div>
             </div>
