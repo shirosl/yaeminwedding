@@ -25,10 +25,10 @@ const NavigationTabs = ({ language,scrolled, setLanguage }) => {
 
                         <button onClick={() => setLanguage('ko')} className={`btn-toggle text-[10px] font-bold border  flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
 
-                </div>
+                </div>*/}
                 
             <div className="flex items-center justify-start py-1">
-                */}
+                
                 
                 <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
                     {SECTIONS.map((section) => ( 
