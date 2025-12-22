@@ -43,6 +43,17 @@ h2 {
 h4{
   font-family: 'Playfair Display', serif;
 }
+.btn-toggle {
+          padding: 0 !important;           /* Reset the 0.6em 1.2em padding */
+          border-radius: 9999px !important; /* Force circular shape over the 8px default */
+          width: 32px !important;          /* Force fixed width */
+          height: 32px !important;         /* Force fixed height */
+          display: flex !important;
+          align-items: center;
+          justify-content: center;
+          min-width: 0 !important;
+          line-height: 0 !important;
+        }
 button {
   border-radius: 8px;
   border: 1px solid transparent;

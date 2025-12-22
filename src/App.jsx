@@ -16,16 +16,16 @@ const SECTIONS = [
 const NavigationTabs = ({ language,scrolled, setLanguage }) => {
      return (
         // Wrapper for the entire sticky navigation bar
-        <div className={`sticky-nav-container sticky top-0 z-10 w-full transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'}`}>
+        <div className={`fixed left-0 right-0 z-50  w-full transition-all duration-300 ${scrolled ? 'top-0 bg-white/90 backdrop-blur-md shadow-sm py-2' : 'top-5 bg-transparent py-4'}`}>
             <div className="p-3 sm:px-8">
             <div className="flex items-center justify-start py-1">
                 
                 {/* Tabs Container - Allows horizontal scrolling on small screens */}
                 <div className="flex gap-2 ml-4">
 
-                        <button onClick={() => setLanguage('en')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
+                        <button onClick={() => setLanguage('en')} className={`btn-toggle text-[10px] font-bold border flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
 
-                        <button onClick={() => setLanguage('ko')} className={`w-8 h-8 rounded-full text-[10px] font-bold border p-0 flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
+                        <button onClick={() => setLanguage('ko')} className={`btn-toggle text-[10px] font-bold border  flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
 
                     </div>
                 <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
@@ -650,8 +650,9 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     <a href={`tel:${contact.shiroPhone}`} className="hover:text-indigo-600 transition-colors"><Phone size={18}/></a>
                 </div>
             </footer>
+            <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
             </div>
-              <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
+              
         </div>
     );
 };
