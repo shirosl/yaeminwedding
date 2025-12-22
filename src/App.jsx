@@ -16,18 +16,20 @@ const SECTIONS = [
 const NavigationTabs = ({ language,scrolled, setLanguage }) => {
      return (
         // Wrapper for the entire sticky navigation bar
-        <div className={`fixed left-0 right-0 z-50  w-full transition-all duration-300 ${scrolled ? 'top-0 bg-white/90 backdrop-blur-md shadow-sm py-2' : 'top-5 bg-transparent py-4'}`}>
-            <div className="p-3 sm:px-8">
-            <div className="flex items-center justify-start py-1">
-                
-                {/* Tabs Container - Allows horizontal scrolling on small screens */}
+        <div className={`fixed left-0 right-0 z-50 flex justify-center w-full transition-all duration-300 ${scrolled ? 'top-0 bg-white/90 backdrop-blur-md shadow-sm py-2' : 'top-5 bg-transparent py-4'}`}>
+            <div className="p-3 sm:px-8 w-full max-w-6xl">
+            {/* Tabs Container - Allows horizontal scrolling on small screens 
                 <div className="flex gap-2 ml-4">
 
                         <button onClick={() => setLanguage('en')} className={`btn-toggle text-[10px] font-bold border flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
 
                         <button onClick={() => setLanguage('ko')} className={`btn-toggle text-[10px] font-bold border  flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
 
-                    </div>
+                </div>
+                
+            <div className="flex items-center justify-start py-1">
+                */}
+                
                 <div className="flex flex-grow overflow-x-auto whitespace-nowrap gap-1 pr-4 scrollbar-hide"> 
                     {SECTIONS.map((section) => ( 
                         <a // Changed from button to <a> for native anchor linking
@@ -80,7 +82,7 @@ const LanguageSwitcher = ({ language, setLanguage }) => (
         </button>
     </div>
 );
-const BackToTopAndRsvpButton = ({ language, formLink }) => {
+const BackToTopAndRsvpButton = ({ language, formLink,setLanguage }) => {
     const [isVisible, setIsVisible] = React.useState(false);
 
     const toggleVisibility = () => {
@@ -108,6 +110,8 @@ const BackToTopAndRsvpButton = ({ language, formLink }) => {
     }, []);
 
     return (
+    <div>
+
         <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end space-y-3">
             
             {/* 1. Back to Top Button (Visible on scroll) */}
@@ -122,6 +126,11 @@ const BackToTopAndRsvpButton = ({ language, formLink }) => {
                 <ArrowBigUpDash className="w-5 h-5" /> 
             </button>
             
+        <div className="">
+                <button onClick={() => setLanguage('en')} className={`btn-toggle text-[10px] font-bold border flex items-center justify-center ${language === 'en' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>En</button>
+                <button onClick={() => setLanguage('ko')} className={`btn-toggle text-[10px] font-bold border  flex items-center justify-center ${language === 'ko' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white text-gray-400 border-gray-200'}`}>Ko</button>
+
+        </div>
             {/* 2. RSVP Button (Always visible and prominent) */}
             <a 
                 href={formLink} 
@@ -133,6 +142,8 @@ const BackToTopAndRsvpButton = ({ language, formLink }) => {
                 {language === 'en' ? 'RSVP / Confirm' : '참석 확인'}
             </a>
         </div>
+    </div>
+       
     );
 };
 const CountdownTimer = ({ language }) => {
@@ -650,7 +661,7 @@ much longer than usual and the Kuala Lumpur-Ipoh route can get really busy. </p>
                     <a href={`tel:${contact.shiroPhone}`} className="hover:text-indigo-600 transition-colors"><Phone size={18}/></a>
                 </div>
             </footer>
-            <BackToTopAndRsvpButton language={language} formLink={contact.formLink} />
+            <BackToTopAndRsvpButton language={language} formLink={contact.formLink} setLanguage={setLanguage}/>
             </div>
               
         </div>
