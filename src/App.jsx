@@ -272,27 +272,27 @@ const LanguageBox = ({ language, enContent, koContent }) => {
 
     const churches = [
         {
-            name: "Sungai Siput Church [Wedding Venue] 성가시푸 교회 [결혼식 장소]",
+            name: "Sungai Siput Church [Wedding Venue] / 숭가이시풋 교회 [결혼식 장소]",
             address: "34, Taman Bukit Medan, 31100 Sungai Siput (U) Perak",
             mapLink: "https://maps.app.goo.gl/icPmi6eHBhsJGGvz5",
             schedule: [
-                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/종일 모임" },
-                { day: "Sat/토", time: "10:30am – 11:30am", service: "Sabbath Service/주일 모임" },
-                { day: "Sun/일", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]/REU 클래스 [취소]", },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/저녁 예배" },
+                { day: "Sat/토", time: "10:30am – 11:30am", service: "Sabbath Service/안식일 예배" },
+                { day: "Sun/일", time: "10:00am – 11:00am", service: "REU Classes [Cancelled]/아동부 예배 [취소]", },
                 { day: "Sun/일 (22/3/2026)", time: "11:00am – 1:00pm", service: "Wedding/결혼식", highlight: true },
             ]
         },
         {
-            name: "Ipoh Church /이포 교회",
+            name: "Ipoh Church/ 이포 교회",
             address: "10, Jalan Voon Thian Soo, 30250 Ipoh",
             mapLink: "https://maps.app.goo.gl/uEcn5bSTNJyakFSw9",
             schedule: [
-                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/종일 모임" },
-                { day: "Sat/토", time: "10:45am – 12:00pm", service: "Sabbath Service/주일 모임" },
-                {  time: "11:10am – 12:10pm", service: "REU Classes (Elementary)/REU 클래스 (초등학교)" },
-                {  time: "1:00pm – 2:00pm", service: "REU Classes (Junior)/REU 클래스 (중학교)" },
-                {  time: "3:00pm – 4:00pm", service: "Afternoon Sabbath Service/주일 모임" },
-                { day: "Sun/일", time: "9:00am – 10:00am", service: "Morning Prayer/아침 모임" },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/저녁 예배" },
+                { day: "Sat/토", time: "10:45am – 12:00pm", service: "Sabbath Service/안식일 오전 예배" },
+                {  time: "11:10am – 12:10pm", service: "REU Classes (Elementary)/REU 아동부 예배" },
+                {  time: "1:00pm – 2:00pm", service: "REU Classes (Junior)/REU 중등부 예배" },
+                {  time: "3:00pm – 4:00pm", service: "Afternoon Sabbath Service/안식일 오후 예배" },
+                { day: "Sun/일", time: "9:00am – 10:00am", service: "Morning Prayer/아침 기도" },
             ]
         },
         {
@@ -300,11 +300,11 @@ const LanguageBox = ({ language, enContent, koContent }) => {
             address: "No. 24, Persiaran Tasek Timur 5, Taman Medan Bercham, 31400 Ipoh, Perak Darul Ridzuan",
             mapLink: "https://maps.app.goo.gl/XB2GZxMM9WSB8aoh7",
             schedule: [
-                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/종일 모임" },
-                { day: "Sat/토", time: "11:00am – 12:00pm", service: "Morning Sabbath Service/주일 모임" },
-                { time: "2:30pm – 3:30pm", service: "Afternoon Sabbath Service/주일 모임" },
-                { time: "4:00pm – 5:30pm", service: "REU Classes/REU 클래스" },
-                { time: "6:30pm – 8:00pm", service: "Youth Service/ Choir Practice/ 청소년 모임" },
+                { day: "Fri/금", time: "7:45pm – 9:00pm", service: "Evening Service/저녁 예배" },
+                { day: "Sat/토", time: "11:00am – 12:00pm", service: "Morning Sabbath Service/안식일 오전 예배" },
+                { time: "2:30pm – 3:30pm", service: "Afternoon Sabbath Service/안식일 오후 예배" },
+                { time: "4:00pm – 5:30pm", service: "REU Classes/아동부 예배" },
+                { time: "6:30pm – 8:00pm", service: "Youth Service/ Choir Practice/청년반 예배 & 성가대 연습" },
             ]
         }
     ];
@@ -399,7 +399,7 @@ const App = () => {
 
                         {language === 'en' ? 'Guest Travel Information' : '하객 여행 안내'}
                </p>
-                    <h1 className="text-4xl md:text-7xl font-bold mb-6 leading-tight">
+                    <h1 className="text-3xl md:text-6xl font-bold mb-5 leading-tight">
 
                         {language === 'en' ? "Shiro & Yae Min's Wedding" : "Shiro & 조예민 결혼식"}
 
